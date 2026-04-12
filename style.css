@@ -71,9 +71,9 @@ body {
     align-items: center;
     justify-content: center;
     margin: 0 auto 16px auto;
-    font-size: 75px;
+    font-size: 60px;
     font-weight: 800;
-    font-family: 'Iskoola Pota', sans-serif;
+    font-family: 'Inknut Antiqua', sans-serif;
     color: #ffffff;
     box-shadow: 0 0 30px rgba(0,0,0, 0.80);
 
@@ -84,7 +84,7 @@ body {
 #app-name {
     text-align: center;
     font-size: 28px;
-    font-family: 'Iskoola Pota', sans-serif;
+    font-family: 'Inknut Antiqua', sans-serif;
     font-weight: bolder;
     letter-spacing: 0.5px;
     margin-bottom: 20px;
@@ -116,4 +116,81 @@ body {
     white-space: nowrap;
     font-family: 'Iskoola Pota', sans-serif;
 
+}
+
+
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.form-label {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 15px;
+    font-family: "Iskoola Pota",sans-serif;
+    letter-spacing: 0.8px;
+}
+
+.form-control {
+    background: rgba(255,255,255,0.09) !important;
+    backdrop-filter: blur(50px);
+    border: 1px solid rgba(255, 255, 255, 0.18) !important; ;
+    border-radius: 10px;
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.3);
+    color: #ffffff !important ;
+    font-size: 14px;
+    padding: 12px 14px;
+}
+
+.form-control::placeholder {
+    font-family: "Iskoola Pota",sans-serif;
+    color: rgba(255, 255, 255, 0.11) !important;
+    letter-spacing: 1px;
+}
+
+.form-control:focus {
+    border-color: rgba(108, 58, 237, 0.1)!important;
+    box-shadow: 0 0 0 3px rgba(108, 58, 237, 0.18) !important;
+    background: rgba(255, 255, 255, 0.10) !important;
+}
+
+.form-control.is-invalid {
+    border-color: rgba(239, 68, 68, 0.65)!important ;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12)!important ;
+}
+
+.form-control.is-valid {
+    border-color: rgba(0, 230, 118, 0.6)!important ;
+    box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.12)!important ;
+}
+
+.invalid-feedback {
+    color: #f87171;
+    font-size: 12px;
+}
+
+#message-box{
+    background: rgba(255,255,255,0.02); !important;
+    /*border: 1px solid rgba(255, 255, 255, 0.18) !important; ;*/
+    font-size: 14px;
+    padding: 12px 14px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    height: 25px;
+
+}
+
+#login-btn{
+    background: linear-gradient(135deg,#080B1A,#0d152c);
+    backdrop-filter: blur(100px);
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    border-radius: 10px;
+    box-shadow: 0 0px 4px rgba(6, 255, 200, 0.49);
+    color: rgba(255, 255, 255, 0.38) !important ;
+    font-size: 25px;
+    letter-spacing: 1px;
+    font-family: "Tac One",sans-serif;
+    margin-top: 0px;
 }
