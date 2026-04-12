@@ -41,6 +41,7 @@ body {
     background: linear-gradient(#0EA5E9,#7C3AED );
 }
 
+/*Login Page*/
 
 #login-card {
     width: 500px;
@@ -85,8 +86,34 @@ body {
     font-size: 28px;
     font-family: 'Iskoola Pota', sans-serif;
     font-weight: bolder;
-    color: #00e676;
     letter-spacing: 0.5px;
     margin-bottom: 20px;
+
+    background: linear-gradient(135deg, #00e676, #0ea5e9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+}
+
+
+#divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 26px;
+}
+
+.divider-line {
+    flex: 1;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.divider-text {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.22);
+    white-space: nowrap;
+    font-family: 'Iskoola Pota', sans-serif;
 
 }
