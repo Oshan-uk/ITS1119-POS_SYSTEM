@@ -244,6 +244,7 @@ body {
     letter-spacing: 1px;
     font-family: "Tac One",sans-serif;
     margin-top: 0px;
+    animation: dropdown 1.4s ease ;
 }
 #login-btn:hover{
     background: linear-gradient(135deg,#080B1A,#0d152c);
@@ -255,4 +256,15 @@ body {
     color: rgb(255, 255, 255) !important ;
     box-shadow: inset 0 0px 8px rgba(255, 255, 255, 0.92);
 
+}
+@keyframes dropdown {
+    0% {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
