@@ -49,7 +49,7 @@ body {
     z-index: 1;
     background: rgba(255,255,255,0.09);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.20);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 35px;
     padding: 44px 40px 40px;
     position: absolute;
@@ -89,11 +89,27 @@ body {
     letter-spacing: 0.5px;
     margin-bottom: 20px;
 
-    background: linear-gradient(135deg, #00e676, #0ea5e9);
+    background: linear-gradient(135deg, #00e676, #0ea5e9, #7c3aed);
+    background-size: 300% 300%; /* Important for animation */
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 
+    animation: gradientMove 4s ease infinite;
+}
+
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 
