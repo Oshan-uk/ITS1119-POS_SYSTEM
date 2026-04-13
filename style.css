@@ -236,6 +236,7 @@ body {
 }
 
 #login-btn{
+    width: 366px;
     border: 1px solid rgba(255, 255, 255, 0.35) !important;
     border-radius: 10px;
     box-shadow: 0 0px 7px rgba(6, 255, 200, 0.49);

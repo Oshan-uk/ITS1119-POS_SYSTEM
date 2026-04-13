@@ -1,35 +1,31 @@
-const form = document.getElementById('form');
-const btn  = document.getElementById('btn');
-const err  = document.getElementById('err');
+// LOGIN FUNCTION
+function login() {
 
-form.addEventListener('submit', async e => {
-    e.preventDefault();
-    const u = document.getElementById('user').value.trim();
-    const p = document.getElementById('pass').value;
+    let username = document.getElementById("username-input").value;
+    let password = document.getElementById("password-input").value;
 
-    err.classList.remove('show');
-    btn.textContent = 'Signing in...';
-    btn.classList.add('loading');
+    if (username === "admin" && password === "1234") {
 
-    await new Promise(r => setTimeout(r, 900));
-    btn.classList.remove('loading');
+        // hide login page
+        document.getElementById("login-page").style.display = "none";
 
-    if (u === 'admin' && p === '1234') {
-        btn.textContent = '✓  Welcome!';
-        btn.style.background = 'linear-gradient(135deg, #68d391, #38b2ac)';
+        // show dashboard page
+        document.getElementById("dashboard-page").style.display = "block";
+
     } else {
-        btn.textContent = 'Enter correct username and password';
-        btn.textContent = 'Login';
-        btn.style.background = '';
-        void err.offsetWidth;
-        err.classList.add('show');
+        document.getElementById("message-box").innerText =
+            "Invalid username or password";
     }
-});
+}
 
-['user', 'pass'].forEach(id => {
-    document.getElementById(id).addEventListener('input', () => {
-        err.classList.remove('show');
-        btn.textContent = 'Login';
-        btn.style.background = '';
-    });
-});
+
+// LOGOUT FUNCTION
+function logout() {
+
+    document.getElementById("dashboard-page").style.display = "none";
+    document.getElementById("login-page").style.display = "block";
+
+    // clear inputs
+    document.getElementById("username-input").value = "";
+    document.getElementById("password-input").value = "";
+}
