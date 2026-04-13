@@ -38,7 +38,7 @@ body {
 .ball3 {
     bottom: -300px;
     right: -300px;
-    background: linear-gradient(#0EA5E9,#7C3AED );
+    background: linear-gradient(#7C3AED,#00e676,#0EA5E9 );
 }
 
 /*Login Page*/
@@ -66,7 +66,6 @@ body {
     width: 72px;
     height: 72px;
     border-radius: 18px;
-    background: linear-gradient(180deg, #6c3aed, #2563eb);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -75,10 +74,26 @@ body {
     /*font-weight: 800;*/
     font-family: 'Inknut Antiqua', sans-serif;
     color: #ffffff;
+    background: linear-gradient(180deg, #603291, #2563eb);
     box-shadow: 0 0 30px rgba(0,0,0, 0.80);
-
+    background-size: 200% 200%;
+    animation: verticalGradient 5s ease infinite;
 }
 
+
+@keyframes verticalGradient {
+    0% {
+        background-position: 50% 0%;
+    }
+    50% {
+        background-position: 50% 100%;
+
+    }
+    100% {
+        background-position: 50% 0%;
+
+    }
+}
 
 
 #app-name {
