@@ -155,7 +155,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.18) !important; ;
     border-radius: 10px;
     box-shadow: 0 0px 20px rgba(0, 0, 0, 0.3);
-    color: #ffffff !important ;
+    /*color: #ffffff !important ;*/
     font-size: 14px;
     padding: 12px 14px;
 }
@@ -201,7 +201,7 @@ body {
 #login-btn{
     border: 1px solid rgba(255, 255, 255, 0.35) !important;
     border-radius: 10px;
-    box-shadow: 0 0px 4px rgba(6, 255, 200, 0.49);
+    box-shadow: 0 0px 7px rgba(6, 255, 200, 0.49);
     color: rgb(0, 0, 0) !important ;
     font-size: 25px;
     letter-spacing: 1px;
@@ -211,5 +211,11 @@ body {
 #login-btn:hover{
     background: linear-gradient(135deg,#080B1A,#0d152c);
     color: rgb(255, 255, 255) !important ;
+
+}
+#login-btn:active{
+    background: linear-gradient(135deg,#080B1A,#0d152c);
+    color: rgb(255, 255, 255) !important ;
+    box-shadow: inset 0 0px 8px rgba(255, 255, 255, 0.92);
 
 }
