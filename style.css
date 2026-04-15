@@ -253,6 +253,7 @@ body {
 
 }
 #login-btn:active{
+    transform: scale(0.99);
     background: linear-gradient(135deg,#080B1A,#0d152c);
     color: rgb(255, 255, 255) !important ;
     box-shadow: inset 0 0px 8px rgba(255, 255, 255, 0.92);
