@@ -28,7 +28,7 @@
 
     <main class="auth-wrapper">
 
-        <section id="login-card" style="display: none;">
+        <section id="login-card" >
 
             <header class="login-header">
 
@@ -79,95 +79,26 @@
 
 
 <!-- DASHBOARD SECTION -->
-<section id="dashboard" >
 
-    <div class="dashboard-container" style="display: block;">
-
-        <aside class="sidebar">
-
-            <div class="logo-area">
-                <div class="logo-icon">P</div>
-                <h2 class="logo-text">POINT OF SALE</h2>
-            </div>
-
-            <nav class="menu">
-
-                <button class="menu-btn active">Dashboard</button>
-                <button class="menu-btn">Customers</button>
-                <button class="menu-btn">Items</button>
-                <button class="menu-btn">New Order</button>
-                <button class="menu-btn">Order History</button>
-
-            </nav>
-
-            <div class="sidebar-footer">
-                <button class="logout-btn">Logout</button>
-            </div>
-
-        </aside>
-
-        <main class="main-content">
-
-            <header class="dashboard-header">
-                <h1>Dashboard</h1>
-                <p>Welcome back, here is New Information...</p>
-            </header>
-
-            <section class="cards">
-
-                <div class="card">
-                    <h5>Total Customers</h5>
-                    <h2>53</h2>
-                </div>
-
-                <div class="card">
-                    <h5>Total Items</h5>
-                    <h2>112</h2>
-                </div>
-
-                <div class="card">
-                    <h5>Orders Today</h5>
-                    <h2>12</h2>
-                </div>
-
-                <div class="card">
-                    <h5>Revenue Today</h5>
-                    <h2>Rs.32,800</h2>
-                </div>
-
-            </section>
-
-            <section class="orders">
-
-                <div class="orders-header">
-                    <h4>Recent Orders</h4>
-                    <button class="view-btn">View All →</button>
-                </div>
-
-                <table class="table table-dark table-hover">
-
-                    <thead>
-                    <tr>
-                        <th>OID</th>
-                        <th>Customer</th>
-                        <th>Items</th>
-                        <th>Total</th>
-                        <th>Date</th>
-                    </tr>
-                    </thead>
-
-                    <tbody id="order-table-body">
-                    </tbody>
-
-                </table>
-
-            </section>
-
-        </main>
-
-    </div>
-
+<section class="bg-container">
+    <div class="ball ball1"></div>
+    <div class="ball ball2"></div>
+    <div class="ball ball3"></div>
 </section>
+
+<aside id="sidebar"> ... </aside>
+
+<main id="main-content">
+    <section id="page-dashboard" class="page-section active"> ... </section>
+    <section id="page-customers" class="page-section"> ... </section>
+    <section id="page-items" class="page-section"> ... </section>
+    <section id="page-neworder" class="page-section"> ... </section>
+    <section id="page-orderhistory" class="page-section"> ... </section>
+</main>
+
+
+
+
 
 <script src="script.js"></script>
 <script src="assets/lib/jquery-4.0.0.min.js"></script>
