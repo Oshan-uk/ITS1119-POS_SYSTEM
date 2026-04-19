@@ -26,7 +26,7 @@
         <div class="ball ball3"></div>
     </div>
 
-    <main class="auth-wrapper">
+    <main class="auth-wrapper" style="display: none;">
 
         <section id="login-card" >
 
@@ -79,22 +79,48 @@
 
 
 <!-- DASHBOARD SECTION -->
+<section>
+    <section class="bg-container">
+        <div class="ball ball1"></div>
+        <div class="ball ball2"></div>
+        <div class="ball ball3"></div>
+    </section>
 
-<section class="bg-container">
-    <div class="ball ball1"></div>
-    <div class="ball ball2"></div>
-    <div class="ball ball3"></div>
+    <aside id="sidebar" style="display: block;">
+
+        <div id="sidebar-brand">
+            <div id="sidebar-logo-icon">P</div>
+            <div id="sidebar-brand-name">POINT OF SALE</div>
+        </div>
+
+        <nav id="sidebar-nav">
+            <button class="nav-btn active">Dashboard</button>
+            <button class="nav-btn">Customers</button>
+            <button class="nav-btn">Items</button>
+            <button class="nav-btn">New Order</button>
+            <button class="nav-btn">Order History</button>
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <div id="sidebar-tools">
+            <button class="tool-link">🖩 Calculator</button>
+            <button class="tool-link">📅 Calendar</button>
+        </div>
+
+        <button id="logout-btn">→ Logout ←</button>
+
+    </aside>
+
+    <main id="main-content">
+        <section id="page-dashboard" class="page-section active"> ... </section>
+        <section id="page-customers" class="page-section"> ... </section>
+        <section id="page-items" class="page-section"> ... </section>
+        <section id="page-neworder" class="page-section"> ... </section>
+        <section id="page-orderhistory" class="page-section"> ... </section>
+    </main>
 </section>
 
-<aside id="sidebar"> ... </aside>
-
-<main id="main-content">
-    <section id="page-dashboard" class="page-section active"> ... </section>
-    <section id="page-customers" class="page-section"> ... </section>
-    <section id="page-items" class="page-section"> ... </section>
-    <section id="page-neworder" class="page-section"> ... </section>
-    <section id="page-orderhistory" class="page-section"> ... </section>
-</main>
 
 
 
