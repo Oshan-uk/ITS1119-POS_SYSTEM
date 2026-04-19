@@ -5,6 +5,14 @@ body {
     overflow: hidden;
 }
 
+.page-section {
+    display: none;
+}
+
+#page-dashboard {
+    display: block;
+}
+
 .bg-container {
     background-color: #080B1A;
     position: fixed;
@@ -386,6 +394,12 @@ body {
     border-color: rgba(0, 230, 118, 0.45);
     box-shadow: 0 0 14px rgba(0, 230, 118, 0.12),
     inset 0 0 8px rgba(0, 230, 118, 0.05);
+}
+
+.nav-btn.active {
+    background: rgba(0, 230, 118, 0.15);
+    border-color: #06eff6;
+    color: #00e676;
 }
 
 .sidebar-divider {
