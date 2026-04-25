@@ -17,113 +17,56 @@
 
 
 
-<div id="loginView">
+<!-- LOGIN PAGE -->
+<div id="login-view">
 
-    <section class="bg-container">
-        <div class="background-effects">
-            <div class="ball ball1"></div>
-            <div class="ball ball2"></div>
-            <div class="ball ball3"></div>
+    <div class="login-bg">
+
+        <div class="login-card">
+
+            <div class="login-logo">POS</div>
+
+            <h4 class="login-title">Point of Sale</h4>
+            <p class="login-sub">Sign in to continue</p>
+
+            <div class="mb-3">
+                <label class="form-label login-label" for="txt-username">
+                    Username
+                </label>
+                <input
+                        type="text"
+                        class="form-control login-input"
+                        id="txt-username"
+                        placeholder="Enter username"
+                />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label login-label" for="txt-password">
+                    Password
+                </label>
+                <input
+                        type="password"
+                        class="form-control login-input"
+                        id="txt-password"
+                        placeholder="Enter password"
+                />
+            </div>
+
+            <div id="login-error" class="login-error-box"></div>
+
+            <button
+                    class="btn btn-login w-100"
+                    id="btn-login">
+                Login
+            </button>
+
+
         </div>
-    </section>
 
-    <main class="auth-wrapper">
-        <section id="login-card">
-
-            <header class="login-header">
-                <div id="logo-icon">P</div>
-                <h1 id="app-name">Point Of Sale</h1>
-                <div id="divider">
-                    <span class="divider-line"></span>
-                    <span class="divider-text">Sign in to your Account</span>
-                    <span class="divider-line"></span>
-                </div>
-            </header>
-
-            <form id="login-form">
-
-                <div class="form-group">
-                    <label class="form-label" for="username-input">Username</label>
-                    <input class="form-control" id="username-input"
-                           type="text" placeholder="Enter your username"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="password-input">Password</label>
-                    <input class="form-control" id="password-input"
-                           type="password" placeholder="Enter your password"/>
-                </div>
-
-                <div id="message-box"></div>
-
-                <div class="form-action">
-                    <button class="btn" id="login-btn"
-                            type="button" onclick="login()">
-                        Login
-                    </button>
-                </div>
-
-            </form>
-
-        </section>
-    </main>
+    </div>
 
 </div>
-
-
-
-<div id="dashboardView" style="display: none;">
-
-    <section class="bg-container">
-        <div class="ball ball1"></div>
-        <div class="ball ball2"></div>
-        <div class="ball ball3"></div>
-    </section>
-
-    <aside id="sidebar">
-
-        <div id="sidebar-brand">
-            <div id="sidebar-logo-icon">P</div>
-            <div id="sidebar-brand-name">POINT OF SALE</div>
-        </div>
-
-        <nav id="sidebar-nav" class="d-flex flex-column gap-2">
-            <button class="nav-btn w-100 text-start" onclick="showPage('dashboard')">Dashboard</button>
-            <button class="nav-btn w-100 text-start" onclick="showPage('customers')">Customers</button>
-            <button class="nav-btn w-100 text-start" onclick="showPage('items')">Items</button>
-            <button class="nav-btn w-100 text-start" onclick="showPage('neworder')">New Order</button>
-            <button class="nav-btn w-100 text-start" onclick="showPage('orderhistory')">Order History</button>
-        </nav>
-
-        <div class="sidebar-divider"></div>
-
-        <div id="sidebar-tools">
-            <button class="tool-link">🧮 Calculator</button>
-            <button class="tool-link">📅 Calendar</button>
-        </div>
-
-        <button id="logout-btn" onclick="logout()">→ Logout ←</button>
-
-    </aside>
-
-    <main>
-
-        <section id="page-customers" class="page-section">
-        </section>
-
-        <section id="page-items" class="page-section">
-        </section>
-
-        <section id="page-neworder" class="page-section">
-        </section>
-
-        <section id="page-orderhistory" class="page-section">
-        </section>
-
-    </main>
-
-</div>
-
 
 
 
