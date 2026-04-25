@@ -17,30 +17,57 @@
 
 
 
-<div id="login-page">
-    <div class="login-card">
+<div id="loginView">
 
-        <div class="login-logo">P</div>
-        <div class="login-title">Point Of Sales</div>
-        <p class="login-sub">Sign in to your account</p>
-
-        <div class="mb-3">
-            <label class="form-label fw-semibold" for="input-username">Username</label>
-            <input type="text" class="form-control" id="input-username"
-                   placeholder="Enter username"/>
+    <section class="bg-container">
+        <div class="background-effects">
+            <div class="ball ball1"></div>
+            <div class="ball ball2"></div>
+            <div class="ball ball3"></div>
         </div>
+    </section>
 
-        <div class="mb-3">
-            <label class="form-label fw-semibold" for="input-password">Password</label>
-            <input type="password" class="form-control" id="input-password"
-                   placeholder="Enter password"/>
-        </div>
+    <main class="auth-wrapper">
+        <section id="login-card">
 
-        <div id="login-error"></div>
+            <header class="login-header">
+                <div id="logo-icon">P</div>
+                <h1 id="app-name">Point Of Sale</h1>
+                <div id="divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-text">Sign in to your Account</span>
+                    <span class="divider-line"></span>
+                </div>
+            </header>
 
-        <button class="btn btn-login" onclick="doLogin()">Sign In</button>
+            <form id="login-form">
 
-    </div>
+                <div class="form-group">
+                    <label class="form-label" for="username-input">Username</label>
+                    <input class="form-control" id="username-input"
+                           type="text" placeholder="Enter your username"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password-input">Password</label>
+                    <input class="form-control" id="password-input"
+                           type="password" placeholder="Enter your password"/>
+                </div>
+
+                <div id="message-box"></div>
+
+                <div class="form-action">
+                    <button class="btn" id="login-btn"
+                            type="button" onclick="login()">
+                        Login
+                    </button>
+                </div>
+
+            </form>
+
+        </section>
+    </main>
+
 </div>
 
 
@@ -79,10 +106,7 @@
 
     </aside>
 
-    <main id="main-content">
-
-        <section id="page-dashboard" class="page-section">
-        </section>
+    <main>
 
         <section id="page-customers" class="page-section">
         </section>
@@ -109,7 +133,7 @@
 <script src="model/ItemModel.js"></script>
 <script src="model/OrderModel.js"></script>
 
-<script src="controller/LoginController.js"></script>
+<script src="controller/AuthController.js"></script>
 <script src="controller/CustomerController.js"></script>
 <script src="controller/ItemController.js"></script>
 <script src="controller/OrderController.js"></script>
