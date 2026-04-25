@@ -1,701 +1,126 @@
+/* =============================================
+          CSS VARIABLES & RESET
+       ============================================= */
+:root {
+    --bg:        #f0f2f5;
+    --white:     #ffffff;
+    --sidebar:   #1a1f2e;
+    --sidebar2:  #252b3b;
+    --accent:    #4f46e5;
+    --accent2:   #6366f1;
+    --green:     #22c55e;
+    --red:       #ef4444;
+    --yellow:    #f59e0b;
+    --text:      #1e293b;
+    --muted:     #64748b;
+    --border:    #e2e8f0;
+    --radius:    12px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-    margin: 0;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
 }
 
-.page-section {
-    display: none;
-}
-
-#page-dashboard {
-    display: block;
-}
-
-.bg-container {
-    background-color: #080B1A;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-}
-
-.ball {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    filter: blur(130px);
-    opacity: 0.5;
-}
-
-.ball1 {
-    top: -300px;
-    left: -300px;
-    background: linear-gradient( #7C3AED,#0EA5E9);
-}
-
-.ball2 {
-    top: 50%;
-    left: 50%;
-    opacity: 0.3;
-    transform: translate(-50%, -50%);
-    background-color:#7C3AED;
-}
-
-.ball3 {
-    bottom: -300px;
-    right: -300px;
-    background: linear-gradient(#7C3AED,#00e676,#0EA5E9 );
-}
-
-/*Login Page*/
-
-#login-card {
-    width: 450px;
-    height: 550px;
-    z-index: 1;
-    background: rgba(255,255,255,0.09);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 35px;
-    padding: 44px 40px 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.9);
-    animation: drop 2s ease ;;
-
-
-}
-@keyframes drop {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-
-#logo-icon {
-    width: 72px;
-    height: 72px;
-    border-radius: 18px;
+/* =============================================
+   LOGIN PAGE
+============================================= */
+#login-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1f2e 0%, #2d3561 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 16px auto;
-    font-size: 70px;
-    /*font-weight: 800;*/
-    font-family: 'Inknut Antiqua', sans-serif;
-    color: #ffffff;
-    background: linear-gradient(180deg, #603291, #2563eb);
-    box-shadow: 0 0 30px rgba(0,0,0, 0.80);
-    background-size: 200% 200%;
-    animation: verticalGradient 5s ease infinite, dropIn 1.4s ease ;
 }
 
-
-@keyframes verticalGradient {
-    0% {
-        background-position: 50% 0%;
-    }
-    50% {
-        background-position: 50% 100%;
-
-    }
-    100% {
-        background-position: 50% 0%;
-
-    }
+.login-card {
+    background: white;
+    border-radius: 20px;
+    padding: 48px 40px;
+    width: 420px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.3);
 }
 
-@keyframes dropIn {
-    0% {
-        transform: translateY(-40px);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-
-#app-name {
-    text-align: center;
-    font-size: 28px;
-    font-family: 'Inknut Antiqua', sans-serif;
-    font-weight: bolder;
-    letter-spacing: 0.5px;
-    margin-bottom: 20px;
-
-    background: linear-gradient(135deg, #00e676, #0ea5e9, #7c3aed);
-    background-size: 300% 300%; /* Important for animation */
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-
-    animation: gradientMove 4s ease infinite;
-}
-
-
-@keyframes gradientMove {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-
-#divider {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 26px;
-}
-
-.divider-line {
-    flex: 1;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.18);
-}
-
-.divider-text {
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.22);
-    white-space: nowrap;
-    font-family: 'Iskoola Pota', sans-serif;
-
-}
-
-
-
-#login-form {
-    display: flex;
-    flex-direction: column;
-}
-
-
-.form-label {
-    color: rgba(255, 255, 255, 0.75);
-    font-size: 15px;
-    font-family: "Iskoola Pota",sans-serif;
-    letter-spacing: 0.8px;
-}
-
-.form-control {
-    background: rgba(255,255,255,0.09) !important;
-    backdrop-filter: blur(50px);
-    border: 1px solid rgba(255, 255, 255, 0.18) !important; ;
-    border-radius: 10px;
-    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.3);
-    /*color: #ffffff !important ;*/
-    font-size: 14px;
-    padding: 12px 14px;
-}
-
-.form-control::placeholder {
-    font-family: "Iskoola Pota",sans-serif;
-    color: rgba(255, 255, 255, 0.22) !important;
-    letter-spacing: 1px;
-}
-
-.form-control:focus {
-    border-color: rgba(108, 58, 237, 0.1)!important;
-    box-shadow: 0 0 0 3px rgba(108, 58, 237, 0.18) !important;
-    background: rgba(255, 255, 255, 0.10) !important;
-}
-
-.form-control.is-invalid {
-    border-color: rgba(239, 68, 68, 0.65)!important ;
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12)!important ;
-}
-
-.form-control.is-valid {
-    border-color: rgba(0, 230, 118, 0.6)!important ;
-    box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.12)!important ;
-}
-
-.invalid-feedback {
-    color: #f87171;
-    font-size: 12px;
-}
-
-#message-box{
-    background: rgba(255,255,255,0.02); !important;
-    /*border: 1px solid rgba(255, 255, 255, 0.18) !important; ;*/
-    font-size: 18px;
-    /*padding: 12px 14px;*/
-    margin-top: 10px;
-    text-align: center;
-    font-family: "Times New Roman",sans-serif;
-    margin-bottom: 20px;
-    height: 25px;
-
-}
-
-#login-btn{
-    width: 366px;
-    border: 1px solid rgba(255, 255, 255, 0.35) !important;
-    border-radius: 10px;
-    box-shadow: 0 0px 7px rgba(6, 255, 200, 0.49);
-    color: rgb(0, 0, 0) !important ;
-    font-size: 25px;
-    letter-spacing: 1px;
-    font-family: "Tac One",sans-serif;
-    margin-top: 0px;
-    animation: dropdown 1.4s ease ;
-}
-#login-btn:hover{
-    background: linear-gradient(135deg,#080B1A,#0d152c);
-    color: rgb(255, 255, 255) !important ;
-
-}
-#login-btn:active{
-    transform: scale(0.99);
-    background: linear-gradient(135deg,#080B1A,#0d152c);
-    color: rgb(255, 255, 255) !important ;
-    box-shadow: inset 0 0px 8px rgba(255, 255, 255, 0.92);
-
-}
-@keyframes dropdown {
-    0% {
-        transform: translateY(40px);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-
-
-/*Dashbord content*/
-
-#sidebar {
-    width: 250px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-
-    background: rgba(255, 255, 255, 0.13);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.42);
-
-    display: flex;
-    flex-direction: column;
-    padding: 18px 12px 16px;
-
-    border-radius: 25px;
-}
-
-#sidebar-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 4px 6px;
-    margin-bottom: 24px;
-}
-
-#sidebar-logo-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 12px;
-    flex-shrink: 0;
-
-    background: linear-gradient(180deg, #603291, #2563eb);
-    background-size: 200% 200%;
-    animation: verticalGradient 5s ease infinite;
-
+.login-logo {
+    width: 56px;
+    height: 56px;
+    background: var(--accent);
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    font-family: 'Inknut Antiqua', sans-serif;
-    font-size: 55px;
-    color: #ffffff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-}
-
-@keyframes verticalGradient {
-    0%   { background-position: 50% 0%;   }
-    50%  { background-position: 50% 100%; }
-    100% { background-position: 50% 0%;   }
-}
-
-#sidebar-brand-name {
-    font-family: 'Inknut Antiqua', sans-serif;
-    font-size: 14px;
-    line-height: 1.4;
-
-    background: linear-gradient(135deg, #00e676, #0ea5e9, #7c3aed);
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: bold;
-    animation: gradientMove 4s ease infinite;
-}
-
-@keyframes gradientMove {
-    0%   { background-position: 0%   50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0%   50%; }
-}
-
-#sidebar-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex: 1;
-}
-
-.nav-btn {
-    width: 210px;
-    padding: 14px 14px;
-    border-radius: 15px;
-
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    background: linear-gradient(to right,#080B1A,#18214D,#253378);
-    box-shadow: 0 0 7px rgba(0, 0, 0, 0.80);
-    font-family: 'Inknut Antiqua', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.5px;
-    color: rgba(255, 255, 255, 0.60);
-
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.18s ease;
-}
-
-.nav-btn:hover {
-    border-color: rgb(97, 248, 10);
-    color: #00e676;
-}
-
-.nav-btn:active {
-    transform: scale(0.98);
-    color: #ffffff;
-    background: rgba(0, 230, 118, 0.08);
-    border-color: rgba(0, 230, 118, 0.45);
-    box-shadow: 0 0 14px rgba(0, 230, 118, 0.12),
-    inset 0 0 8px rgba(0, 230, 118, 0.05);
-}
-
-.nav-btn.active {
-    background: rgba(0, 230, 118, 0.15);
-    border-color: #06eff6;
-    color: #00e676;
-}
-
-.sidebar-divider {
-    height: 2px;
-    background: rgba(255, 255, 255, 0.13);
-    margin: 56px 0;
-}
-
-#sidebar-tools {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    align-items: center;
-
-}
-
-.tool-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 7px 10px;
-    border-radius: 8px;
-    border: none;
-    background: transparent;
-
-    font-family: 'Times New Roman', sans-serif;
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.30);
-
-    cursor: pointer;
-    transition: all 0.15s ease;
-    text-align: center;
-}
-
-.tool-link:hover {
-    color: rgba(255, 255, 255, 0.60);
-    background: rgba(255, 255, 255, 0.05);
-}
-
-#logout-btn {
-    width: 210px;
-    padding: 10px 14px;
-    border-radius: 10px;
-
-    border: 1px solid rgb(85, 84, 84);
-    background: linear-gradient(to right,#080B1A,#802727);
-
-    font-family: 'Kanchenjunga', sans-serif;
-    font-weight: bold;
-    font-size: 13px;
-    letter-spacing: 0.5px;
-    color: white;
-
-    cursor: pointer;
-    transition: all 0.18s ease;
-    box-shadow: 0 0 7px rgba(255, 80, 100, 0.25);
-}
-
-#logout-btn:hover {
-
-}
-
-#logout-btn:active {
-    color: red;
-    transform: scale(0.98);
-    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
-}
-
-
-
-
-
-#main-content {
-    flex: 1;
-    height: 100vh;
-    overflow-y: auto;
-    padding: 20px;
-}
-
-/*Dashboard Section*/
-#page-dashboard {
-    display: block;
-    height: 100vh;
-    position: absolute;
-    width: calc(100% - 255px);
-    z-index: 1;
-    right: 0;
-    top: 0;
-    border: 2px solid rgba(255, 255, 255, 0.16);
-    border-radius: 35px;
-    background: rgba(255, 255, 255, 0.07);
-    padding: 30px 40px 40px;
-
-}
-
-#dashboard-header {
-    margin-bottom: 24px;
-}
-
-#dashboard-title {
-    font-family: 'Inknut Antiqua', sans-serif;
-    font-size: 32px;
-    font-weight: 800;
-    color: #ffffff;
-    letter-spacing: -0.5px;
-}
-
-#dashboard-subtitle {
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.45);
-    margin-top: 4px;
-    font-family: "Inconsolata", monospace;
-    font-weight: bold;
-}
-
-#status-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    margin-bottom: 28px;
-}
-
-.status-card {
-    background: rgb(7, 10, 23);
-    border: 1px solid rgb(6, 239, 246);
-    border-radius: 14px;
-    padding: 18px 16px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.15s, box-shadow 0.15s;
-    cursor: default;
-    text-align: center;
-    font-family: "Inknut Antiqua", sans-serif;
-
-}
-
-.status-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.35);
-}
-
-.card-purple:hover{
-    border: 2px solid #7C3AED;
-    color: #7C3AED;
-}
-.card-blue:hover{
-    border: 2px solid #0ea5e9;
-    color: #0ea5e9;
-}
-.card-amber:hover{
-    border: 2px solid #9e9e0c;
-    color: rgb(159, 159, 12);
-}
-.card-green:hover{
-    border: 2px solid #00e676;
-    color: #00e676;
-}
-
-
-
-.status-card-label {
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    color: rgba(255, 255, 255, 0.71);
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-.card-purple{
-    color: #7C3AED;
-}
-.card-blue{
-    color: #0ea5e9;
-}
-.card-amber{
-    color: rgb(159, 159, 12);
-}
-.card-green{
-    color: #00e676;
-}
-
-.status-card-value {
-    font-family: 'Tac One', sans-serif;
-    font-size: 28px;
-    letter-spacing: -0.5px;
-    line-height: 1;
-}
-
-
-#recent-orders-section {
-    background: rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    border-radius: 14px;
-    overflow: hidden;
-}
-
-#recent-orders-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-#recent-orders-title {
-    font-family: 'Times New Roman', sans-serif;
-    font-size: 15px;
-    font-weight: bold;
-    color: rgba(255, 255, 255, 0.22);
-    letter-spacing: 0.3px;
-}
-
-#view-all-btn {
-    padding: 6px 16px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    background: rgba(255, 255, 255, 0.05);
-    font-family: 'Outfit', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.60);
-    cursor: pointer;
-    transition: all 0.15s;
-}
-
-#view-all-btn:hover {
-    color: #06eff6;
-    border-color: rgb(10, 72, 230);
-    background: rgba(255, 255, 255, 0.10);
-}
-#view-all-btn:active {
-    color: #61f80a;
-    transform: scale(0.9);
-    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
-}
-
-#orders-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-#orders-table thead th {
-    padding: 10px 18px;
-    text-align: left;
-    font-size: 10.5px;
+    font-size: 24px;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: rgba(255, 255, 255, 0.30);
-    background: rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    color: white;
+    margin: 0 auto 20px;
 }
 
-#orders-table tbody tr {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    transition: background 0.12s;
+.login-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 6px;
 }
 
-#orders-table tbody tr:hover {
-    background: rgba(255, 255, 255, 0.04);
-}
-
-#orders-table tbody tr:last-child {
-    border-bottom: none;
-}
-
-#orders-table tbody td {
-    padding: 12px 18px;
+.login-sub {
+    text-align: center;
+    color: var(--muted);
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.65);
-    vertical-align: middle;
-    font-family: "Times New Roman", sans-serif;
-
+    margin-bottom: 32px;
 }
 
-.order-id-badge {
-    display: inline-block;
-    padding: 3px 9px;
-    border-radius: 5px;
-    font-size: 11px;
+.login-card .form-label {
+    font-size: 13px;
     font-weight: 600;
-    background: rgba(124, 58, 237, 0.33);
-    color: #a78bfa;
-    border: 1px solid rgba(124, 58, 237, 0.30);
+    color: var(--text);
 }
 
-.order-total {
-    color: #00e676;
+.login-card .form-control {
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    padding: 11px 14px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-card .form-control:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(79,70,229,0.12);
+}
+
+.btn-login {
+    width: 100%;
+    background: var(--accent);
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
     font-weight: 600;
+    margin-top: 8px;
+    transition: background 0.2s, transform 0.1s;
 }
 
-.customer-name {
-    color: #ffffff;
+.btn-login:hover  { background: var(--accent2); color: white; }
+.btn-login:active { transform: scale(0.99); }
+
+#login-error {
+    font-size: 13px;
+    color: var(--red);
+    text-align: center;
+    min-height: 20px;
+    margin-top: 10px;
+}
+
+.login-hint {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 18px;
 }

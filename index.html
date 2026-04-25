@@ -17,57 +17,30 @@
 
 
 
-<div id="loginView">
+<div id="login-page">
+    <div class="login-card">
 
-    <section class="bg-container">
-        <div class="background-effects">
-            <div class="ball ball1"></div>
-            <div class="ball ball2"></div>
-            <div class="ball ball3"></div>
+        <div class="login-logo">P</div>
+        <div class="login-title">Point Of Sales</div>
+        <p class="login-sub">Sign in to your account</p>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold" for="input-username">Username</label>
+            <input type="text" class="form-control" id="input-username"
+                   placeholder="Enter username"/>
         </div>
-    </section>
 
-    <main class="auth-wrapper">
-        <section id="login-card">
+        <div class="mb-3">
+            <label class="form-label fw-semibold" for="input-password">Password</label>
+            <input type="password" class="form-control" id="input-password"
+                   placeholder="Enter password"/>
+        </div>
 
-            <header class="login-header">
-                <div id="logo-icon">P</div>
-                <h1 id="app-name">Point Of Sale</h1>
-                <div id="divider">
-                    <span class="divider-line"></span>
-                    <span class="divider-text">Sign in to your Account</span>
-                    <span class="divider-line"></span>
-                </div>
-            </header>
+        <div id="login-error"></div>
 
-            <form id="login-form">
+        <button class="btn btn-login" onclick="doLogin()">Sign In</button>
 
-                <div class="form-group">
-                    <label class="form-label" for="username-input">Username</label>
-                    <input class="form-control" id="username-input"
-                           type="text" placeholder="Enter your username"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="password-input">Password</label>
-                    <input class="form-control" id="password-input"
-                           type="password" placeholder="Enter your password"/>
-                </div>
-
-                <div id="message-box"></div>
-
-                <div class="form-action">
-                    <button class="btn" id="login-btn"
-                            type="button" onclick="login()">
-                        Login
-                    </button>
-                </div>
-
-            </form>
-
-        </section>
-    </main>
-
+    </div>
 </div>
 
 
@@ -109,52 +82,6 @@
     <main id="main-content">
 
         <section id="page-dashboard" class="page-section">
-
-            <div id="dashboard-header">
-                <div id="dashboard-title">Dashboard</div>
-                <div id="dashboard-subtitle">Welcome back, here is New Information...</div>
-            </div>
-
-            <div id="status-grid">
-                <div class="status-card card-purple">
-                    <div class="status-card-label">Total<br/>Customers</div>
-                    <div class="status-card-value" id="status-total-customers">0</div>
-                </div>
-                <div class="status-card card-blue">
-                    <div class="status-card-label">Total<br/>Items</div>
-                    <div class="status-card-value" id="status-total-items">0</div>
-                </div>
-                <div class="status-card card-amber">
-                    <div class="status-card-label">Orders<br/>Today</div>
-                    <div class="status-card-value" id="status-orders-today">0</div>
-                </div>
-                <div class="status-card card-green">
-                    <div class="status-card-label">Revenue<br/>Today</div>
-                    <div class="status-card-value" id="status-revenue-today">Rs.0</div>
-                </div>
-            </div>
-
-            <div id="recent-orders-section">
-                <div id="recent-orders-header">
-                    <div id="recent-orders-title">Recent Orders</div>
-                    <button id="view-all-btn"
-                            onclick="showPage('orderhistory')">View All →</button>
-                </div>
-                <table id="orders-table">
-                    <thead>
-                    <tr>
-                        <th>OID</th>
-                        <th>Customer</th>
-                        <th>Items</th>
-                        <th>Total</th>
-                        <th>Date</th>
-                    </tr>
-                    </thead>
-                    <tbody id="recent-orders-table-body">
-                    </tbody>
-                </table>
-            </div>
-
         </section>
 
         <section id="page-customers" class="page-section">
@@ -182,7 +109,7 @@
 <script src="model/ItemModel.js"></script>
 <script src="model/OrderModel.js"></script>
 
-<script src="controller/AuthController.js"></script>
+<script src="controller/LoginController.js"></script>
 <script src="controller/CustomerController.js"></script>
 <script src="controller/ItemController.js"></script>
 <script src="controller/OrderController.js"></script>
