@@ -6,71 +6,66 @@
     <title>POS_System</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Tac+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Tac+One&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet"/>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="assets/styles/style.css">
+
+    <link rel="stylesheet" href="assets/styles/style.css"/>
+
 </head>
 <body>
 
-
-
 <!-- LOGIN PAGE -->
 <div id="login-view">
-
     <div class="login-bg">
-
         <div class="login-card">
 
             <div class="login-logo">POS</div>
-
             <h4 class="login-title">Point of Sale</h4>
             <p class="login-sub">Sign in to continue</p>
 
             <div class="mb-3">
-                <label class="form-label login-label" for="txt-username">
-                    Username
-                </label>
-                <input
-                        type="text"
-                        class="form-control login-input"
-                        id="txt-username"
-                        placeholder="Enter username"
-                />
+                <label class="form-label login-label" for="txt-username">Username</label>
+                <input type="text"
+                       class="form-control login-input"
+                       id="txt-username"
+                       placeholder="Enter username"/>
             </div>
 
             <div class="mb-3">
-                <label class="form-label login-label" for="txt-password">
-                    Password
-                </label>
-                <input
-                        type="password"
-                        class="form-control login-input"
-                        id="txt-password"
-                        placeholder="Enter password"
-                />
+                <label class="form-label login-label" for="txt-password">Password</label>
+                <input type="password"
+                       class="form-control login-input"
+                       id="txt-password"
+                       placeholder="Enter password"/>
             </div>
 
             <div id="login-error" class="login-error-box"></div>
 
-            <button
-                    class="btn btn-login w-100"
-                    id="btn-login">
+            <button class="btn btn-login w-100" id="btn-login">
                 Login
             </button>
 
-
         </div>
-
     </div>
+</div>
+
+<div id="dashboard-view" style="display:none;">
+
 
 </div>
 
 
 
+
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
 <script src="db/db.js"></script>
+<script src="util/regex_util.js"></script>
 
 <script src="model/CustomerModel.js"></script>
 <script src="model/ItemModel.js"></script>
@@ -80,9 +75,6 @@
 <script src="controller/CustomerController.js"></script>
 <script src="controller/ItemController.js"></script>
 <script src="controller/OrderController.js"></script>
-
-<script src="assets/lib/jquery-4.0.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
