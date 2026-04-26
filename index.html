@@ -65,6 +65,8 @@
     <!-- SIDEBAR -->
     <aside id="sidebar">
 
+        <div id="sidebar-logo-icon">P</div>
+        <h1 id="sidebar-brand-name">Point Of Sale</h1>
         <button class="nav-btn" onclick="showPage('dashboard')">Dashboard</button>
         <button class="nav-btn" onclick="showPage('customers')">Customers</button>
         <button class="nav-btn" onclick="showPage('items')">Items</button>
@@ -78,7 +80,73 @@
     <main id="main-content">
 
 <!--        next start from here-->
-        <section id="page-dashboard">Dashboard</section>
+        <section id="page-dashboard">
+
+            <!-- HEADER -->
+            <div id="dashboard-header">
+                <h2 style="color:white;">Dashboard</h2>
+                <p style="color: rgba(255,255,255,0.5);">
+                    Welcome back! Here is your system overview.
+                </p>
+            </div>
+
+            <!-- STATS CARDS -->
+            <div id="status-grid">
+
+                <div class="status-card card-purple">
+                    <div class="status-card-label">Total Customers</div>
+                    <div class="status-card-value" id="totalCustomers">0</div>
+                </div>
+
+                <div class="status-card card-blue">
+                    <div class="status-card-label">Total Items</div>
+                    <div class="status-card-value" id="totalItems">0</div>
+                </div>
+
+                <div class="status-card card-amber">
+                    <div class="status-card-label">Orders Today</div>
+                    <div class="status-card-value" id="totalOrders">0</div>
+                </div>
+
+                <div class="status-card card-green">
+                    <div class="status-card-label">Revenue</div>
+                    <div class="status-card-value" id="totalRevenue">Rs. 0</div>
+                </div>
+
+            </div>
+
+            <!-- RECENT ORDERS TABLE -->
+            <div id="recent-orders-section">
+
+                <div id="recent-orders-header">
+                    <h5 style="color:white;">Recent Orders</h5>
+                    <button id="view-all-btn">View All-></button>
+                </div>
+
+                <table id="orders-table">
+                    <thead>
+                    <tr>
+                        <th>OID</th>
+                        <th>Customer</th>
+                        <th>Total</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="recentOrdersTable">
+                    <!-- JS will load data here -->
+                    <tr>
+                        <td colspan="4" style="text-align:center; color:gray;">
+                            No orders yet
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
         <section id="page-customers" style="display:none;">Customers</section>
         <section id="page-items" style="display:none;">Items</section>
         <section id="page-neworder" style="display:none;">New Order</section>

@@ -42,7 +42,6 @@ body {
 }
 
 /*Login Page*/
-
 #login-card {
     width: 450px;
     height: 550px;
@@ -273,7 +272,7 @@ body {
 
 
 
-/*Dashbord content*/
+/*Dashboard content*/
 
 #sidebar {
     width: 250px;
@@ -296,7 +295,7 @@ body {
 }
 
 #sidebar-brand {
-    display: flex;
+    display: inline;
     align-items: center;
     gap: 10px;
     padding: 4px 6px;
@@ -331,9 +330,8 @@ body {
 
 #sidebar-brand-name {
     font-family: 'Inknut Antiqua', sans-serif;
-    font-size: 14px;
-    line-height: 1.4;
-
+    font-size: 16px;
+    line-height: 2;
     background: linear-gradient(135deg, #00e676, #0ea5e9, #7c3aed);
     background-size: 300% 300%;
     -webkit-background-clip: text;
@@ -368,7 +366,7 @@ body {
     font-size: 13px;
     letter-spacing: 0.5px;
     color: rgba(255, 255, 255, 0.60);
-
+    margin-bottom: 20px;
     cursor: pointer;
     text-align: center;
     transition: all 0.18s ease;
@@ -438,7 +436,7 @@ body {
     font-size: 13px;
     letter-spacing: 0.5px;
     color: white;
-
+    margin-top: 100px;
     cursor: pointer;
     transition: all 0.18s ease;
     box-shadow: 0 0 7px rgba(255, 80, 100, 0.25);

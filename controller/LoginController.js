@@ -44,3 +44,5 @@ function showPage(page) {
 
     $("#page-" + page).show();
 }
+
+window.showPage = showPage;
