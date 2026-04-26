@@ -1,189 +1,117 @@
-import{addCustomer,getAllCustomers,getCustomerById,updateCustomer,deleteCustomer,generateCustomerId} from '../model/CustomerModel';
-import {REGEX} from "../util/regex_util";
+import {
+    addCustomerData, updateCustomerData, deleteCustomerData,
+    getCustomerData, getCustomerByIndex, getCustomerById,
+    generateCustomerId
+} from '../model/CustomerModel.js';
 
+import { check_phone } from '../util/regex_util.js';
+import { loadDashboard } from './AuthController.js';
 
-function openAddCustomerModal() {
+const loadCustomerTable = () => {
+    $('#cust_tbody').empty();
 
-    var newId = generateCustomerId();
-
-    $("#cust-id").val(newId);
-    $("#cust-id-display").val(newId);
-    $("#cust-name").val("");
-    $("#cust-phone").val("");
-    $("#cust-address").val("");
-
-    $("#customer-modal-title").text("Add Customer");
-
-    clearCustomerErrors();
-}
-
-
-function openEditCustomerModal(id) {
-
-    var c = getCustomerById(id);
-    if (!c) return;
-
-    $("#cust-id").val(c.id);
-    $("#cust-id-display").val(c.id);
-    $("#cust-name").val(c.name);
-    $("#cust-phone").val(c.phone);
-    $("#cust-address").val(c.address);
-
-    $("#customer-modal-title").text("Edit Customer");
-
-    clearCustomerErrors();
-
-    var modal = new bootstrap.Modal(
-        document.getElementById("modal-customer")
-    );
-    modal.show();
-}
-
-
-function saveCustomer() {
-
-    var id      = $("#cust-id").val().trim();
-    var name    = $("#cust-name").val().trim();
-    var phone   = $("#cust-phone").val().trim();
-    var address = $("#cust-address").val().trim();
-
-    if (!validateCustomerForm(name, phone, address)) return;
-
-    var existing = getCustomerById(id);
-
-    if (existing) {
-        updateCustomer({ id: id, name: name, phone: phone, address: address });
-        showToast("Customer updated successfully!");
-    } else {
-        addCustomer({ id: id, name: name, phone: phone, address: address });
-        showToast("Customer added successfully!");
-    }
-
-    bootstrap.Modal.getInstance(
-        document.getElementById("modal-customer")
-    ).hide();
-
-    renderCustomerTable(getAllCustomers());
-
-    updateDashboard();
-}
-
-
-function deleteCustomerById(id) {
-
-    var c = getCustomerById(id);
-    if (!c) return;
-
-    if (!confirm('Delete customer "' + c.name + '"?')) return;
-
-    deleteCustomer(id);
-    renderCustomerTable(getAllCustomers());
-    updateDashboard();
-    showToast("Customer deleted.");
-}
-
-
-function renderCustomerTable(list) {
-
-    var tbody = $("#customer-tbody");
-
-    if (!list || list.length === 0) {
-        tbody.html(
-            '<tr><td colspan="5" class="empty-row">No customers yet.</td></tr>'
-        );
-        return;
-    }
-
-    var rows = "";
-
-    list.forEach(function (c) {
-        rows += "<tr>";
-        rows += "<td><span class='id-badge'>" + c.id + "</span></td>";
-        rows += "<td><strong>" + c.name + "</strong></td>";
-        rows += "<td>" + c.phone + "</td>";
-        rows += "<td>" + c.address + "</td>";
-        rows += "<td>";
-        rows += "<button class='btn-edit-row' " +
-            "onclick='openEditCustomerModal(\"" + c.id + "\")'>" +
-            "Edit</button>";
-        rows += "<button class='btn-delete-row' " +
-            "onclick='deleteCustomerById(\"" + c.id + "\")'>" +
-            "Delete</button>";
-        rows += "</td>";
-        rows += "</tr>";
+    let list = getCustomerData();
+    list.map((customer, index) => {
+        let row = `<tr data-index="${index}">
+            <td>${customer.id}</td>
+            <td>${customer.name}</td>
+            <td>${customer.phone}</td>
+            <td>${customer.address}</td>
+        </tr>`;
+        $('#cust_tbody').append(row);
     });
-
-    tbody.html(rows);
 }
 
+const cleanCustomerForm = () => {
+    $('#cust_reset_btn').click();
+    $('#cust_id').val(generateCustomerId());
+}
 
-function searchCustomers(keyword) {
+$('#cust_tbody').on('click', 'tr', function () {
+    $('.selected').removeClass('selected');
+    $(this).addClass('selected');
 
-    var result = getAllCustomers().filter(function (c) {
-        var kw = keyword.toLowerCase();
-        return c.name.toLowerCase().includes(kw) ||
-            c.id.toLowerCase().includes(kw);
+    let customer = getCustomerByIndex($(this).index());
+    $('#cust_id').val(customer.id);
+    $('#cust_name').val(customer.name);
+    $('#cust_phone').val(customer.phone);
+    $('#cust_address').val(customer.address);
+});
+
+$('#cust_save_btn').on('click', function () {
+    let id      = $('#cust_id').val();
+    let name    = $('#cust_name').val().trim();
+    let phone   = $('#cust_phone').val().trim();
+    let address = $('#cust_address').val().trim();
+
+    (id == "")                 ? Swal.fire({ icon: "error", title: "ID is missing!" }) :
+        (getCustomerById(id))      ? Swal.fire({ icon: "error", title: "ID already exists!" }) :
+            (name == "")               ? Swal.fire({ icon: "error", title: "Name is required!" }) :
+                (!check_phone(phone))      ? Swal.fire({ icon: "error", title: "Invalid phone number!" }) :
+                    (address == "")            ? Swal.fire({ icon: "error", title: "Address is required!" }) :
+                        (() => {
+                            addCustomerData(id, name, phone, address);
+                            Swal.fire({ icon: "success", title: "Customer saved!" });
+                            cleanCustomerForm();
+                            loadCustomerTable();
+                            loadDashboard();
+                        })();
+});
+
+$('#cust_update_btn').on('click', function () {
+    let id      = $('#cust_id').val();
+    let name    = $('#cust_name').val().trim();
+    let phone   = $('#cust_phone').val().trim();
+    let address = $('#cust_address').val().trim();
+
+    (id == "")                 ? Swal.fire({ icon: "error", title: "Select a customer first!" }) :
+        (!getCustomerById(id))     ? Swal.fire({ icon: "error", title: "Customer not found!" }) :
+            (name == "")               ? Swal.fire({ icon: "error", title: "Name is required!" }) :
+                (!check_phone(phone))      ? Swal.fire({ icon: "error", title: "Invalid phone number!" }) :
+                    (address == "")            ? Swal.fire({ icon: "error", title: "Address is required!" }) :
+                        (() => {
+                            updateCustomerData(id, name, phone, address);
+                            Swal.fire({ icon: "success", title: "Customer updated!" });
+                            cleanCustomerForm();
+                            loadCustomerTable();
+                        })();
+});
+
+$('#cust_delete_btn').on('click', function () {
+    let id = $('#cust_id').val();
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "This customer will be removed!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, delete!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            (id == "")             ? Swal.fire({ icon: "error", title: "Select a customer first!" }) :
+                (!getCustomerById(id)) ? Swal.fire({ icon: "error", title: "Customer not found!" }) :
+                    (() => {
+                        deleteCustomerData(id);
+                        Swal.fire({ icon: "success", title: "Customer deleted!" });
+                        cleanCustomerForm();
+                        loadCustomerTable();
+                        loadDashboard();
+                    })();
+        }
     });
+});
 
-    renderCustomerTable(result);
-}
-
-
-function validateCustomerForm(name, phone, address) {
-
-    var valid = true;
-
-    if (name === "") {
-        showCustomerFieldError("cust-name", "err-cust-name", "Name is required.");
-        valid = false;
-    }
-
-    if (phone === "") {
-        showCustomerFieldError("cust-phone", "err-cust-phone", "Phone is required.");
-        valid = false;
-    } else if (!REGEX.phone.test(phone)) {
-        showCustomerFieldError("cust-phone", "err-cust-phone", "Must be 10 digits.");
-        valid = false;
-    }
-
-    if (address === "") {
-        showCustomerFieldError("cust-address", "err-cust-address", "Address is required.");
-        valid = false;
-    }
-
-    return valid;
-}
-
-
-
-function showCustomerFieldError(inputId, errId, message) {
-    $("#" + inputId).addClass("is-invalid");
-    $("#" + errId).text(message);
-}
-
-function clearCustomerErrors() {
-    $("#cust-name, #cust-phone, #cust-address").removeClass("is-invalid");
-    $("#err-cust-name, #err-cust-phone, #err-cust-address").text("");
-}
-
+$('#cust_search').on('input', function () {
+    let keyword = $(this).val().toLowerCase();
+    $('#cust_tbody tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().includes(keyword));
+    });
+});
 
 $(document).ready(function () {
-
-    $("#customer-search").on("input", function () {
-        searchCustomers($(this).val());
-    });
-
-    $("#cust-name").on("input", function () {
-        $(this).removeClass("is-invalid");
-        $("#err-cust-name").text("");
-    });
-    $("#cust-phone").on("input", function () {
-        $(this).removeClass("is-invalid");
-        $("#err-cust-phone").text("");
-    });
-    $("#cust-address").on("input", function () {
-        $(this).removeClass("is-invalid");
-        $("#err-cust-address").text("");
-    });
-
+    $('#cust_id').val(generateCustomerId());
 });
+
+export { loadCustomerTable };
