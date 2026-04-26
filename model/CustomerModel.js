@@ -1,34 +1,67 @@
-import {customers} from "../db/db";
+import { customer_db } from '../db/db.js';
 
-function addCustomer(obj) {
-    customers.push(obj);
+class Customer {
+    #id;
+    #name;
+    #phone;
+    #address;
+
+    constructor(id, name, phone, address) {
+        this.#id      = id;
+        this.#name    = name;
+        this.#phone   = phone;
+        this.#address = address;
+    }
+
+    get id()      { return this.#id;      }
+    get name()    { return this.#name;    }
+    get phone()   { return this.#phone;   }
+    get address() { return this.#address; }
+
+    set name(name)       { this.#name    = name;    }
+    set phone(phone)     { this.#phone   = phone;   }
+    set address(address) { this.#address = address; }
 }
 
-function getAllCustomers() {
-    return customers;
+const addCustomerData = (id, name, phone, address) => {
+    let new_customer = new Customer(id, name, phone, address);
+    customer_db.push(new_customer);
 }
 
-function getCustomerById(id) {
-    return customers.find(function (c) {
-        return c.id === id;
-    });
+const updateCustomerData = (id, name, phone, address) => {
+    let obj = customer_db.find(item => item.id == id);
+    if (obj) {
+        obj.name    = name;
+        obj.phone   = phone;
+        obj.address = address;
+    }
 }
 
-function updateCustomer(updatedObj) {
-    customers = customers.map(function (c) {
-        return c.id === updatedObj.id ? updatedObj : c;
-    });
+const deleteCustomerData = (id) => {
+    let index = customer_db.findIndex(item => item.id == id);
+    if (index !== -1) {
+        customer_db.splice(index, 1);
+    }
 }
 
-function deleteCustomer(id) {
-    customers = customers.filter(function (c) {
-        return c.id !== id;
-    });
+const getCustomerData = () => {
+    return customer_db;
 }
 
-function generateCustomerId() {
-    var num = customers.length + 1;
-    return "C" + String(num).padStart(3, "0");
+const getCustomerByIndex = (index) => {
+    return customer_db[index];
 }
 
-export {addCustomer,getAllCustomers,getCustomerById,updateCustomer,deleteCustomer,generateCustomerId}
+const getCustomerById = (id) => {
+    return customer_db.find(item => item.id == id);
+}
+
+const generateCustomerId = () => {
+    return "C" + String(customer_db.length + 1).padStart(3, "0");
+}
+
+export {
+    addCustomerData, updateCustomerData, deleteCustomerData,
+    getCustomerData, getCustomerByIndex, getCustomerById,
+    generateCustomerId
+};
