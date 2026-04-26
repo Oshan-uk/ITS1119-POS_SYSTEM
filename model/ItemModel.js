@@ -1,37 +1,74 @@
-function addItem(obj) {
-    items.push(obj);
+import { item_db } from '../db/db.js';
+
+class Item {
+    #code;
+    #name;
+    #price;
+    #qty;
+
+    constructor(code, name, price, qty) {
+        this.#code  = code;
+        this.#name  = name;
+        this.#price = price;
+        this.#qty   = qty;
+    }
+
+    get code()  { return this.#code;  }
+    get name()  { return this.#name;  }
+    get price() { return this.#price; }
+    get qty()   { return this.#qty;   }
+
+    set name(name)   { this.#name  = name;  }
+    set price(price) { this.#price = price; }
+    set qty(qty)     { this.#qty   = qty;   }
 }
 
-function getAllItems() {
-    return items;
+const addItemData = (code, name, price, qty) => {
+    let new_item = new Item(code, name, parseFloat(price), parseInt(qty));
+    item_db.push(new_item);
 }
 
-function getItemByCode(code) {
-    return items.find(function (i) {
-        return i.code === code;
-    });
-}
-
-function updateItem(updatedObj) {
-    items = items.map(function (i) {
-        return i.code === updatedObj.code ? updatedObj : i;
-    });
-}
-
-function deleteItem(code) {
-    items = items.filter(function (i) {
-        return i.code !== code;
-    });
-}
-
-function reduceStock(code, qty) {
-    var item = getItemByCode(code);
-    if (item) {
-        item.qty = item.qty - qty;
+const updateItemData = (code, name, price, qty) => {
+    let obj = item_db.find(item => item.code == code);
+    if (obj) {
+        obj.name  = name;
+        obj.price = parseFloat(price);
+        obj.qty   = parseInt(qty);
     }
 }
 
-function generateItemCode() {
-    var num = items.length + 1;
-    return "I" + String(num).padStart(3, "0");
+const deleteItemData = (code) => {
+    let index = item_db.findIndex(item => item.code == code);
+    if (index !== -1) {
+        item_db.splice(index, 1);
+    }
 }
+
+const getItemData = () => {
+    return item_db;
+}
+
+const getItemByIndex = (index) => {
+    return item_db[index];
+}
+
+const getItemByCode = (code) => {
+    return item_db.find(item => item.code == code);
+}
+
+const reduceItemStock = (code, qty) => {
+    let obj = item_db.find(item => item.code == code);
+    if (obj) {
+        obj.qty = obj.qty - qty;
+    }
+}
+
+const generateItemCode = () => {
+    return "I" + String(item_db.length + 1).padStart(3, "0");
+}
+
+export {
+    addItemData, updateItemData, deleteItemData,
+    getItemData, getItemByIndex, getItemByCode,
+    reduceItemStock, generateItemCode
+};
