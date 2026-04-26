@@ -1,5 +1,7 @@
-let customers = [];
-let items = [];
-let orders = [];
+let customer_db = [];
 
-export {customers,items,orders};
+let item_db = [];
+
+let order_db = [];
+
+export { customer_db, item_db, order_db };
