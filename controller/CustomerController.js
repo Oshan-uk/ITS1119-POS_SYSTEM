@@ -1,3 +1,5 @@
+import{addCustomer,getAllCustomers,getCustomerById,updateCustomer,deleteCustomer,generateCustomerId} from '../model/CustomerModel';
+import {REGEX} from "../util/regex_util";
 
 
 function openAddCustomerModal() {

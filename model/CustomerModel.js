@@ -1,3 +1,5 @@
+import {customers} from "../db/db";
+
 function addCustomer(obj) {
     customers.push(obj);
 }
@@ -28,3 +30,5 @@ function generateCustomerId() {
     var num = customers.length + 1;
     return "C" + String(num).padStart(3, "0");
 }
+
+export {addCustomer,getAllCustomers,getCustomerById,updateCustomer,deleteCustomer,generateCustomerId}

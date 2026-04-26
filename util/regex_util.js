@@ -12,6 +12,7 @@ var REGEX = {
 
 };
 
+export {REGEX};
 // How to use:
 // REGEX.phone.test("0771234567")  → true
 // REGEX.price.test("abc")         → false
