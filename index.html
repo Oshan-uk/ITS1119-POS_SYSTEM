@@ -12,377 +12,79 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
-    <link rel="stylesheet" href="assets/styles/style.css"/>
+    <link rel="stylesheet" href="styles/style.css"/>
 
 </head>
 <body>
 
 
-<section id="login_section">
-    <div class="login_wrapper">
-        <div class="login_card">
 
-            <div class="login_logo">POS</div>
-            <h4 class="login_title">Point of Sale</h4>
-            <p class="login_sub">Sign in to continue</p>
-
-            <div class="mb-3">
-                <label class="form-label" for="login_username">Username</label>
-                <input type="text" class="form-control" id="login_username"
-                       placeholder="Enter username"/>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="login_password">Password</label>
-                <input type="password" class="form-control" id="login_password"
-                       placeholder="Enter password"/>
-            </div>
-
-            <div id="login_error" class="login_error"></div>
-
-            <button type="button" class="btn btn-primary w-100"
-                    id="login_btn">
-                Login
-            </button>
-
-        </div>
-    </div>
+<section class="bg-container">
+    <div class="ball ball1"></div>
+    <div class="ball ball2"></div>
+    <div class="ball ball3"></div>
 </section>
 
 
-<section id="dashboard_section" style="display:none;">
+<main class="auth-wrapper">
 
-    <nav class="navbar bg-dark navbar-dark px-4 pos_navbar">
-        <span class="navbar-brand fw-bold">🏪 POS System</span>
-        <button type="button" class="btn btn-outline-danger btn-sm"
-                id="logout_btn">
-            Logout
-        </button>
-    </nav>
+    <section id="login-card">
 
-    <div class="d-flex">
+        <header class="login-header">
 
-        <aside id="sidebar">
-            <ul class="nav flex-column p-3">
+            <div id="logo-icon">P</div>
 
-                <li class="nav-item">
-                    <div class="nav-link sidebar_link" id="nav_dashboard">
-                        📊 Dashboard
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <div class="nav-link sidebar_link" id="nav_customers">
-                        👥 Customers
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <div class="nav-link sidebar_link" id="nav_items">
-                        📦 Items
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <div class="nav-link sidebar_link" id="nav_orders">
-                        🛒 New Order
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <div class="nav-link sidebar_link" id="nav_history">
-                        📋 Order History
-                    </div>
-                </li>
+            <h1 id="app-name">Point Of Sale</h1>
 
-            </ul>
-        </aside>
-
-        <main id="main_content" class="flex-grow-1 p-4">
-
-
-            <div id="content_dashboard" class="content_section">
-
-                <h3 class="mb-4">Dashboard</h3>
-
-                <div class="row g-3 mb-4">
-                    <div class="col-md-3">
-                        <div class="card text-white bg-primary">
-                            <div class="card-body text-center">
-                                <h6 class="card-title">Total Customers</h6>
-                                <h2 id="dash_customers">0</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card text-white bg-success">
-                            <div class="card-body text-center">
-                                <h6 class="card-title">Total Items</h6>
-                                <h2 id="dash_items">0</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card text-white bg-warning">
-                            <div class="card-body text-center">
-                                <h6 class="card-title">Total Orders</h6>
-                                <h2 id="dash_orders">0</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card text-white bg-danger">
-                            <div class="card-body text-center">
-                                <h6 class="card-title">Revenue</h6>
-                                <h2 id="dash_revenue">Rs.0</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <h5>Recent Orders</h5>
-                <table class="table table-bordered table-hover">
-                    <thead class="table-dark">
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Customer</th>
-                        <th>Items</th>
-                        <th>Total</th>
-                        <th>Date</th>
-                    </tr>
-                    </thead>
-                    <tbody id="dash_recent_tbody"></tbody>
-                </table>
-
+            <div id="divider">
+                <span class="divider-line"></span>
+                <span class="divider-text">Sign in to your Account</span>
+                <span class="divider-line"></span>
             </div>
 
+        </header>
 
-            <div id="content_customers" class="content_section" style="display:none;">
+        <form id="login-form">
 
-                <h3 class="mb-4">Customer Management</h3>
-
-                <form class="w-50 mb-4">
-                    <div class="mb-3">
-                        <label class="form-label" for="cust_id">Customer ID</label>
-                        <input type="text" class="form-control" id="cust_id"
-                               placeholder="Auto generated" readonly/>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="cust_name">Full Name</label>
-                        <input type="text" class="form-control" id="cust_name"
-                               placeholder="Enter name"/>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="cust_phone">Phone</label>
-                        <input type="text" class="form-control" id="cust_phone"
-                               placeholder="07XXXXXXXX"/>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="cust_address">Address</label>
-                        <input type="text" class="form-control" id="cust_address"
-                               placeholder="Enter address"/>
-                    </div>
-                    <div class="text-end">
-                        <button type="button" class="btn btn-success"
-                                id="cust_save_btn">Save</button>
-                        <button type="button" class="btn btn-primary"
-                                id="cust_update_btn">Update</button>
-                        <button type="button" class="btn btn-danger"
-                                id="cust_delete_btn">Delete</button>
-                        <button type="reset" class="btn btn-secondary"
-                                id="cust_reset_btn">Reset</button>
-                    </div>
-                </form>
-
-                <div class="mb-3 w-50">
-                    <input type="text" class="form-control" id="cust_search"
-                           placeholder="Search by name or ID..."/>
-                </div>
-
-                <table class="table table-bordered table-hover">
-                    <thead class="table-dark">
-                    <tr>
-                        <th>CID</th>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                    </tr>
-                    </thead>
-                    <tbody id="cust_tbody"></tbody>
-                </table>
-
+            <div class="mb-3">
+                <label class="form-label" for="username-input">Username</label>
+                <input class="form-control"
+                       id="username-input"
+                       type="text"
+                       placeholder="Enter your username"/>
             </div>
 
-
-            <div id="content_items" class="content_section" style="display:none;">
-
-                <h3 class="mb-4">Item Management</h3>
-
-                <form class="w-50 mb-4">
-                    <div class="mb-3">
-                        <label class="form-label" for="item_code">Item Code</label>
-                        <input type="text" class="form-control" id="item_code"
-                               placeholder="Auto generated" readonly/>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="item_name">Item Name</label>
-                        <input type="text" class="form-control" id="item_name"
-                               placeholder="Enter item name"/>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="item_price">Unit Price (Rs.)</label>
-                        <input type="number" class="form-control" id="item_price"
-                               placeholder="0.00" min="0" step="0.01"/>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="item_qty">Qty on Hand</label>
-                        <input type="number" class="form-control" id="item_qty"
-                               placeholder="0" min="0"/>
-                    </div>
-                    <div class="text-end">
-                        <button type="button" class="btn btn-success"
-                                id="item_save_btn">Save</button>
-                        <button type="button" class="btn btn-primary"
-                                id="item_update_btn">Update</button>
-                        <button type="button" class="btn btn-danger"
-                                id="item_delete_btn">Delete</button>
-                        <button type="reset" class="btn btn-secondary"
-                                id="item_reset_btn">Reset</button>
-                    </div>
-                </form>
-
-                <div class="mb-3 w-50">
-                    <input type="text" class="form-control" id="item_search"
-                           placeholder="Search by name or code..."/>
-                </div>
-
-                <table class="table table-bordered table-hover">
-                    <thead class="table-dark">
-                    <tr>
-                        <th>Code</th>
-                        <th>Name</th>
-                        <th>Unit Price</th>
-                        <th>Qty</th>
-                    </tr>
-                    </thead>
-                    <tbody id="item_tbody"></tbody>
-                </table>
-
+            <div class="mb-3">
+                <label class="form-label" for="password-input">Password</label>
+                <input class="form-control"
+                       id="password-input"
+                       type="password"
+                       placeholder="Enter your password"/>
             </div>
 
+            <div id="message-box"></div>
 
-            <div id="content_orders" class="content_section" style="display:none;">
-
-                <h3 class="mb-4">New Order</h3>
-
-                <div class="row">
-
-                    <div class="col-md-7">
-
-                        <div class="mb-3">
-                            <label class="form-label" for="order_customer_select">
-                                Select Customer
-                            </label>
-                            <select class="form-select" id="order_customer_select">
-                                <option value="">-- Select Customer --</option>
-                            </select>
-                        </div>
-
-                        <div class="row g-2 mb-3">
-                            <div class="col-7">
-                                <label class="form-label" for="order_item_select">
-                                    Select Item
-                                </label>
-                                <select class="form-select" id="order_item_select">
-                                    <option value="">-- Select Item --</option>
-                                </select>
-                            </div>
-                            <div class="col-3">
-                                <label class="form-label" for="order_qty">Qty</label>
-                                <input type="number" class="form-control"
-                                       id="order_qty" value="1" min="1"/>
-                            </div>
-                            <div class="col-2 d-flex align-items-end">
-                                <button type="button" class="btn btn-success w-100"
-                                        id="order_add_btn">Add</button>
-                            </div>
-                        </div>
-
-                        <table class="table table-bordered table-sm">
-                            <thead class="table-dark">
-                            <tr>
-                                <th>Item</th>
-                                <th>Price</th>
-                                <th>Qty</th>
-                                <th>Subtotal</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody id="cart_tbody"></tbody>
-                        </table>
-
-                    </div>
-
-                    <div class="col-md-5">
-                        <div class="card p-4">
-                            <h5 class="mb-3">Order Summary</h5>
-                            <p>Customer:
-                                <strong id="summary_customer">—</strong>
-                            </p>
-                            <p>Items in Cart:
-                                <strong id="summary_count">0</strong>
-                            </p>
-                            <hr/>
-                            <h5>Total:
-                                <span class="text-success"
-                                      id="summary_total">Rs. 0.00</span>
-                            </h5>
-                            <button type="button"
-                                    class="btn btn-primary mt-3 w-100"
-                                    id="place_order_btn">
-                                ✓ Place Order
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
-
+            <div class="d-grid">
+                <button class="btn" id="login-btn" type="button">
+                    Login
+                </button>
             </div>
 
+        </form>
 
-            <div id="content_history" class="content_section" style="display:none;">
+    </section>
 
-                <h3 class="mb-4">Order History</h3>
-
-                <table class="table table-bordered table-hover">
-                    <thead class="table-dark">
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Customer</th>
-                        <th>Items</th>
-                        <th>Total</th>
-                        <th>Date</th>
-                    </tr>
-                    </thead>
-                    <tbody id="history_tbody"></tbody>
-                </table>
-
-            </div>
-
-
-        </main>
-    </div>
-
-</section>
-
-
-
+</main>
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script  src="controller/LoginController.js"></script>
-<script  src="controller/CustomerController.js"></script>
-<script  src="controller/ItemController.js"></script>
-<script  src="controller/OrderController.js"></script>
+<script  type="module" src="controller/LoginController.js"></script>
+<script  type="module" src="controller/CustomerController.js"></script>
+<script  type="module" src="controller/ItemController.js"></script>
+<script  type="module" src="controller/OrderController.js"></script>
 
 </body>
 </html>

@@ -5,7 +5,7 @@ import {
 } from '../model/CustomerModel.js';
 
 import { check_phone } from '../util/regex_util.js';
-import { loadDashboard } from './AuthController.js';
+import { loadDashboard } from './LoginController.js';
 
 const loadCustomerTable = () => {
     $('#cust_tbody').empty();

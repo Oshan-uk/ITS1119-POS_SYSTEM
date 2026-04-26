@@ -5,7 +5,7 @@ import {
 } from '../model/ItemModel.js';
 
 import { check_price, check_qty } from '../util/regex_util.js';
-import { loadDashboard } from './AuthController.js';
+import { loadDashboard } from './LoginController.js';
 
 const loadItemTable = () => {
     $('#item_tbody').empty();
