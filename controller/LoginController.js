@@ -1,4 +1,3 @@
-
 const USERNAME = "admin";
 const PASSWORD = "1234";
 
@@ -9,23 +8,39 @@ $("#login-btn").on("click", () => {
     const password = $("#password-input").val().trim();
 
     if (!username || !password) {
-        $("#message-box").html(
-            `<div class="alert alert-warning">Enter username and password</div>`
-        );
+        $("#message-box").text("Enter username and password");
         return;
     }
 
     if (username === USERNAME && password === PASSWORD) {
 
-        $("#message-box").html("");
+        $("#message-box").text("");
 
+        $("#loginWrapper").hide();
 
-        alert("Login Success!");
+        $("#mainPage").show();
 
+        showPage("dashboard");
 
     } else {
-        $("#message-box").html(
-            `<div class="alert alert-danger">Invalid credentials</div>`
-        );
+        $("#message-box").text("Invalid credentials");
     }
 });
+
+
+$("#logout-btn").on("click", () => {
+
+    $("#mainPage").hide();
+    $("#loginWrapper").show();
+
+    $("#username-input").val("");
+    $("#password-input").val("");
+});
+
+
+function showPage(page) {
+
+    $("#page-dashboard, #page-customers, #page-items, #page-neworder, #page-orderhistory").hide();
+
+    $("#page-" + page).show();
+}
