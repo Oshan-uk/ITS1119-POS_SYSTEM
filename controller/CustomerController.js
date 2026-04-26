@@ -1,164 +1,187 @@
 
+
 function openAddCustomerModal() {
-    const newId = generateCustomerId();
 
-    document.getElementById("cust-id").value         = newId;
-    document.getElementById("cust-id-display").value = newId;
-    document.getElementById("cust-name").value        = "";
-    document.getElementById("cust-contact").value     = "";
-    document.getElementById("cust-address").value     = "";
-    document.getElementById("customerModalLabel").textContent = "Add Customer";
+    var newId = generateCustomerId();
 
-    clearAllErrors();
+    $("#cust-id").val(newId);
+    $("#cust-id-display").val(newId);
+    $("#cust-name").val("");
+    $("#cust-phone").val("");
+    $("#cust-address").val("");
+
+    $("#customer-modal-title").text("Add Customer");
+
+    clearCustomerErrors();
 }
 
-function editCustomer(id) {
-    const c = getCustomerById(id);
+
+function openEditCustomerModal(id) {
+
+    var c = getCustomerById(id);
     if (!c) return;
 
-    document.getElementById("cust-id").value         = c.id;
-    document.getElementById("cust-id-display").value = c.id;
-    document.getElementById("cust-name").value        = c.name;
-    document.getElementById("cust-contact").value     = c.contact;
-    document.getElementById("cust-address").value     = c.address;
-    document.getElementById("customerModalLabel").textContent = "Edit Customer";
+    $("#cust-id").val(c.id);
+    $("#cust-id-display").val(c.id);
+    $("#cust-name").val(c.name);
+    $("#cust-phone").val(c.phone);
+    $("#cust-address").val(c.address);
 
-    clearAllErrors();
+    $("#customer-modal-title").text("Edit Customer");
 
-    new bootstrap.Modal(document.getElementById("customerModal")).show();
+    clearCustomerErrors();
+
+    var modal = new bootstrap.Modal(
+        document.getElementById("modal-customer")
+    );
+    modal.show();
 }
 
+
 function saveCustomer() {
-    const id      = document.getElementById("cust-id").value.trim();
-    const name    = document.getElementById("cust-name").value.trim();
-    const contact = document.getElementById("cust-contact").value.trim();
-    const address = document.getElementById("cust-address").value.trim();
 
-    if (!validateForm(name, contact, address)) return;
+    var id      = $("#cust-id").val().trim();
+    var name    = $("#cust-name").val().trim();
+    var phone   = $("#cust-phone").val().trim();
+    var address = $("#cust-address").val().trim();
 
-    const alreadyExists = getAllCustomers().some(c => c.id === id);
+    if (!validateCustomerForm(name, phone, address)) return;
 
-    if (alreadyExists) {
-        updateCustomer({ id, name, contact, address });
-        showToast("Customer updated!");
+    var existing = getCustomerById(id);
+
+    if (existing) {
+        updateCustomer({ id: id, name: name, phone: phone, address: address });
+        showToast("Customer updated successfully!");
     } else {
-        addCustomer({ id, name, contact, address });
-        showToast("Customer added!");
+        addCustomer({ id: id, name: name, phone: phone, address: address });
+        showToast("Customer added successfully!");
     }
 
     bootstrap.Modal.getInstance(
-        document.getElementById("customerModal")
+        document.getElementById("modal-customer")
     ).hide();
 
     renderCustomerTable(getAllCustomers());
+
+    updateDashboard();
 }
 
+
 function deleteCustomerById(id) {
-    const c = getCustomerById(id);
+
+    var c = getCustomerById(id);
     if (!c) return;
 
-    if (!confirm(`Delete "${c.name}"?`)) return;
+    if (!confirm('Delete customer "' + c.name + '"?')) return;
 
     deleteCustomer(id);
     renderCustomerTable(getAllCustomers());
+    updateDashboard();
     showToast("Customer deleted.");
 }
 
+
 function renderCustomerTable(list) {
-    const tbody = document.getElementById("customer-table-body");
-    const empty = document.getElementById("customer-empty");
+
+    var tbody = $("#customer-tbody");
 
     if (!list || list.length === 0) {
-        tbody.innerHTML     = "";
-        empty.style.display = "block";
+        tbody.html(
+            '<tr><td colspan="5" class="empty-row">No customers yet.</td></tr>'
+        );
         return;
     }
 
-    empty.style.display = "none";
+    var rows = "";
 
-    tbody.innerHTML = list.map(c => `
-        <tr>
-            <td>${c.id}</td>
-            <td>${c.name}</td>
-            <td>${c.contact}</td>
-            <td>${c.address}</td>
-            <td>
-                <button class="btn btn-edit"
-                        onclick="editCustomer('${c.id}')">Edit</button>
-                <button class="btn btn-delete"
-                        onclick="deleteCustomerById('${c.id}')">Delete</button>
-            </td>
-        </tr>
-    `).join("");
+    list.forEach(function (c) {
+        rows += "<tr>";
+        rows += "<td><span class='id-badge'>" + c.id + "</span></td>";
+        rows += "<td><strong>" + c.name + "</strong></td>";
+        rows += "<td>" + c.phone + "</td>";
+        rows += "<td>" + c.address + "</td>";
+        rows += "<td>";
+        rows += "<button class='btn-edit-row' " +
+            "onclick='openEditCustomerModal(\"" + c.id + "\")'>" +
+            "Edit</button>";
+        rows += "<button class='btn-delete-row' " +
+            "onclick='deleteCustomerById(\"" + c.id + "\")'>" +
+            "Delete</button>";
+        rows += "</td>";
+        rows += "</tr>";
+    });
+
+    tbody.html(rows);
 }
 
-// live search by name or id
+
 function searchCustomers(keyword) {
-    const result = getAllCustomers().filter(c =>
-        c.name.toLowerCase().includes(keyword.toLowerCase()) ||
-        c.id.toLowerCase().includes(keyword.toLowerCase())
-    );
+
+    var result = getAllCustomers().filter(function (c) {
+        var kw = keyword.toLowerCase();
+        return c.name.toLowerCase().includes(kw) ||
+            c.id.toLowerCase().includes(kw);
+    });
+
     renderCustomerTable(result);
 }
 
-// ── Validation ────────────────────────────────────────────────
-function validateForm(name, contact, address) {
-    let ok = true;
+
+function validateCustomerForm(name, phone, address) {
+
+    var valid = true;
 
     if (name === "") {
-        showError("cust-name", "err-name", "Name is required");
-        ok = false;
+        showCustomerFieldError("cust-name", "err-cust-name", "Name is required.");
+        valid = false;
     }
 
-    if (contact === "") {
-        showError("cust-contact", "err-contact", "Phone number is required");
-        ok = false;
-    } else if (!/^[0-9]{10}$/.test(contact)) {
-        showError("cust-contact", "err-contact", "Must be 10 digits");
-        ok = false;
+    if (phone === "") {
+        showCustomerFieldError("cust-phone", "err-cust-phone", "Phone is required.");
+        valid = false;
+    } else if (!REGEX.phone.test(phone)) {
+        showCustomerFieldError("cust-phone", "err-cust-phone", "Must be 10 digits.");
+        valid = false;
     }
 
     if (address === "") {
-        showError("cust-address", "err-address", "Address is required");
-        ok = false;
+        showCustomerFieldError("cust-address", "err-cust-address", "Address is required.");
+        valid = false;
     }
 
-    return ok;
+    return valid;
 }
 
-function showError(inputId, errId, msg) {
-    document.getElementById(inputId).classList.add("is-invalid");
-    document.getElementById(errId).textContent = msg;
+
+
+function showCustomerFieldError(inputId, errId, message) {
+    $("#" + inputId).addClass("is-invalid");
+    $("#" + errId).text(message);
 }
 
-function clearErr(inputId, errId) {
-    document.getElementById(inputId).classList.remove("is-invalid");
-    document.getElementById(errId).textContent = "";
+function clearCustomerErrors() {
+    $("#cust-name, #cust-phone, #cust-address").removeClass("is-invalid");
+    $("#err-cust-name, #err-cust-phone, #err-cust-address").text("");
 }
 
-function clearAllErrors() {
-    ["cust-name", "cust-contact", "cust-address"].forEach(id => {
-        document.getElementById(id).classList.remove("is-invalid");
+
+$(document).ready(function () {
+
+    $("#customer-search").on("input", function () {
+        searchCustomers($(this).val());
     });
-    ["err-name", "err-contact", "err-address"].forEach(id => {
-        document.getElementById(id).textContent = "";
-    });
-}
 
-// ── Toast notification ────────────────────────────────────────
-function showToast(msg) {
-    let box = document.getElementById("toast-msg");
-    if (!box) {
-        box = document.createElement("div");
-        box.id = "toast-msg";
-        document.body.appendChild(box);
-    }
-    box.textContent   = "✓  " + msg;
-    box.style.opacity = "1";
-    box.style.display = "block";
-    clearTimeout(box._t);
-    box._t = setTimeout(() => {
-        box.style.opacity = "0";
-        setTimeout(() => box.style.display = "none", 400);
-    }, 2500);
-}
+    $("#cust-name").on("input", function () {
+        $(this).removeClass("is-invalid");
+        $("#err-cust-name").text("");
+    });
+    $("#cust-phone").on("input", function () {
+        $(this).removeClass("is-invalid");
+        $("#err-cust-phone").text("");
+    });
+    $("#cust-address").on("input", function () {
+        $(this).removeClass("is-invalid");
+        $("#err-cust-address").text("");
+    });
+
+});
