@@ -1,67 +1,70 @@
-import { customer_db } from '../db/db.js';
+
+const customers = [];
 
 class Customer {
-    #id;
-    #name;
-    #phone;
-    #address;
-
     constructor(id, name, phone, address) {
-        this.#id      = id;
-        this.#name    = name;
-        this.#phone   = phone;
-        this.#address = address;
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
     }
 
-    get id()      { return this.#id;      }
-    get name()    { return this.#name;    }
-    get phone()   { return this.#phone;   }
-    get address() { return this.#address; }
-
-    set name(name)       { this.#name    = name;    }
-    set phone(phone)     { this.#phone   = phone;   }
-    set address(address) { this.#address = address; }
-}
-
-const addCustomerData = (id, name, phone, address) => {
-    let new_customer = new Customer(id, name, phone, address);
-    customer_db.push(new_customer);
-}
-
-const updateCustomerData = (id, name, phone, address) => {
-    let obj = customer_db.find(item => item.id == id);
-    if (obj) {
-        obj.name    = name;
-        obj.phone   = phone;
-        obj.address = address;
+    getName() {
+        return this.name;
     }
-}
 
-const deleteCustomerData = (id) => {
-    let index = customer_db.findIndex(item => item.id == id);
-    if (index !== -1) {
-        customer_db.splice(index, 1);
+    getPhone() {
+        return this.phone;
     }
+
+    getAddress() {
+        return this.address;
+    }
+
+
+    setName(name) { this.name = name; }
+    setPhone(phone) { this.phone = phone; }
+    setAddress(address) { this.address = address; }
 }
 
-const getCustomerData = () => {
-    return customer_db;
-}
+const addCustomer = (id, name, phone, address) => {
 
-const getCustomerByIndex = (index) => {
-    return customer_db[index];
-}
+    const exists = customers.some(c => c.id === id);
 
-const getCustomerById = (id) => {
-    return customer_db.find(item => item.id == id);
-}
+    if (exists) {
+        return false;
+    }
 
-const generateCustomerId = () => {
-    return "C" + String(customer_db.length + 1).padStart(3, "0");
-}
-
-export {
-    addCustomerData, updateCustomerData, deleteCustomerData,
-    getCustomerData, getCustomerByIndex, getCustomerById,
-    generateCustomerId
+    const customer = new Customer(id, name, phone, address);
+    customers.push(customer);
+    return true;
 };
+
+const updateCustomer = (id, name, phone, address) => {
+    const c = customers.find(c => c.id === id);
+    if (c) {
+        c.setName(name);
+        c.setPhone(phone);
+        c.setAddress(address);
+    }
+};
+
+const deleteCustomer = (id) => {
+    const index = customers.findIndex(c => c.id === id);
+    if (index !== -1) {
+        customers.splice(index, 1);
+    }
+};
+
+const getCustomers = () => {
+    return customers;
+};
+
+const searchCustomer = (keyword) => {
+    return customers.filter(c =>
+        c.id.toLowerCase().includes(keyword.toLowerCase()) ||
+        c.name.toLowerCase().includes(keyword.toLowerCase())
+    );
+};
+
+export { addCustomer, updateCustomer, deleteCustomer,getCustomers, searchCustomer };

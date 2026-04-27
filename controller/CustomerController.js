@@ -1,117 +1,138 @@
 import {
-    addCustomerData, updateCustomerData, deleteCustomerData,
-    getCustomerData, getCustomerByIndex, getCustomerById,
-    generateCustomerId
-} from '../model/CustomerModel.js';
+    addCustomer,
+    getCustomers,
+    searchCustomer,
+    updateCustomer,
+    deleteCustomer
+} from "../model/CustomerModel.js";
 
-import { check_phone } from '../util/regex_util.js';
-import { loadDashboard } from './LoginController.js';
+let selectedId = null;
 
-const loadCustomerTable = () => {
-    $('#cust_tbody').empty();
+const loadTable = (data) => {
+    const tbody = $("#customersTableBody");
+    tbody.empty();
 
-    let list = getCustomerData();
-    list.map((customer, index) => {
-        let row = `<tr data-index="${index}">
-            <td>${customer.id}</td>
-            <td>${customer.name}</td>
-            <td>${customer.phone}</td>
-            <td>${customer.address}</td>
-        </tr>`;
-        $('#cust_tbody').append(row);
+    if (data.length === 0) {
+        tbody.append(`<tr><td colspan="4" class="text-center">No customers</td></tr>`);
+        return;
+    }
+
+    data.forEach(c => {
+        tbody.append(`
+            <tr>
+                <td>${c.id}</td>
+                <td>${c.getName()}</td>
+                <td>${c.getPhone()}</td>
+                <td>${c.getAddress()}</td>
+            </tr>
+        `);
     });
-}
 
-const cleanCustomerForm = () => {
-    $('#cust_reset_btn').click();
-    $('#cust_id').val(generateCustomerId());
-}
+    updateDashboard();
+};
 
-$('#cust_tbody').on('click', 'tr', function () {
-    $('.selected').removeClass('selected');
-    $(this).addClass('selected');
+const updateDashboard = () => {
+    $("#totalCustomers").text(getCustomers().length);
+};
 
-    let customer = getCustomerByIndex($(this).index());
-    $('#cust_id').val(customer.id);
-    $('#cust_name').val(customer.name);
-    $('#cust_phone').val(customer.phone);
-    $('#cust_address').val(customer.address);
-});
+const generateId = () => {
+    const list = getCustomers();
+    if (list.length === 0) return "C001";
 
-$('#cust_save_btn').on('click', function () {
-    let id      = $('#cust_id').val();
-    let name    = $('#cust_name').val().trim();
-    let phone   = $('#cust_phone').val().trim();
-    let address = $('#cust_address').val().trim();
+    const last = list[list.length - 1].id;
+    const num = parseInt(last.replace("C", "")) + 1;
+    return "C" + String(num).padStart(3, "0");
+};
 
-    (id == "")                 ? Swal.fire({ icon: "error", title: "ID is missing!" }) :
-        (getCustomerById(id))      ? Swal.fire({ icon: "error", title: "ID already exists!" }) :
-            (name == "")               ? Swal.fire({ icon: "error", title: "Name is required!" }) :
-                (!check_phone(phone))      ? Swal.fire({ icon: "error", title: "Invalid phone number!" }) :
-                    (address == "")            ? Swal.fire({ icon: "error", title: "Address is required!" }) :
-                        (() => {
-                            addCustomerData(id, name, phone, address);
-                            Swal.fire({ icon: "success", title: "Customer saved!" });
-                            cleanCustomerForm();
-                            loadCustomerTable();
-                            loadDashboard();
-                        })();
-});
+const resetForm = () => {
+    selectedId = null;
+    $("#custId").val(generateId());
+    $("#custName").val("");
+    $("#custPhone").val("");
+    $("#custEmail").val("");
+};
 
-$('#cust_update_btn').on('click', function () {
-    let id      = $('#cust_id').val();
-    let name    = $('#cust_name').val().trim();
-    let phone   = $('#cust_phone').val().trim();
-    let address = $('#cust_address').val().trim();
+$(document).ready(() => {
 
-    (id == "")                 ? Swal.fire({ icon: "error", title: "Select a customer first!" }) :
-        (!getCustomerById(id))     ? Swal.fire({ icon: "error", title: "Customer not found!" }) :
-            (name == "")               ? Swal.fire({ icon: "error", title: "Name is required!" }) :
-                (!check_phone(phone))      ? Swal.fire({ icon: "error", title: "Invalid phone number!" }) :
-                    (address == "")            ? Swal.fire({ icon: "error", title: "Address is required!" }) :
-                        (() => {
-                            updateCustomerData(id, name, phone, address);
-                            Swal.fire({ icon: "success", title: "Customer updated!" });
-                            cleanCustomerForm();
-                            loadCustomerTable();
-                        })();
-});
+    resetForm();
+    loadTable(getCustomers());
 
-$('#cust_delete_btn').on('click', function () {
-    let id = $('#cust_id').val();
+    $("#addCustomerBtn").click(() => {
+        const id = $("#custId").val().trim();
+        const name = $("#custName").val().trim();
+        const phone = $("#custPhone").val().trim();
+        const address = $("#custEmail").val().trim();
 
-    Swal.fire({
-        title: "Are you sure?",
-        text: "This customer will be removed!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Yes, delete!"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            (id == "")             ? Swal.fire({ icon: "error", title: "Select a customer first!" }) :
-                (!getCustomerById(id)) ? Swal.fire({ icon: "error", title: "Customer not found!" }) :
-                    (() => {
-                        deleteCustomerData(id);
-                        Swal.fire({ icon: "success", title: "Customer deleted!" });
-                        cleanCustomerForm();
-                        loadCustomerTable();
-                        loadDashboard();
-                    })();
+        if (!name || !phone || !address) {
+            alert("Fill all fields");
+            return;
         }
+
+        const success = addCustomer(id, name, phone, address);
+
+        if (!success) {
+            alert("Customer already exists!");
+            return;
+        }
+
+        loadTable(getCustomers());
+        resetForm();
     });
-});
 
-$('#cust_search').on('input', function () {
-    let keyword = $(this).val().toLowerCase();
-    $('#cust_tbody tr').filter(function () {
-        $(this).toggle($(this).text().toLowerCase().includes(keyword));
+    $("#customersTableBody").on("click", "tr", function () {
+
+        $("#customersTableBody tr").removeClass("table-active"); // remove old
+        $(this).addClass("table-active"); // highlight
+
+        const id = $(this).find("td:eq(0)").text();
+        const customer = getCustomers().find(c => c.id === id);
+
+        if (customer) {
+            selectedId = id;
+
+            $("#custId").val(customer.id);
+            $("#custName").val(customer.getName());
+            $("#custPhone").val(customer.getPhone());
+            $("#custEmail").val(customer.getAddress());
+        }
+        resetForm();
+
     });
-});
 
-$(document).ready(function () {
-    $('#cust_id').val(generateCustomerId());
-});
+    $("#updateCustomerBtn").click(() => {
+        if (!selectedId) {
+            alert("Select a customer first");
+            return;
+        }
 
-export { loadCustomerTable };
+        const name = $("#custName").val().trim();
+        const phone = $("#custPhone").val().trim();
+        const address = $("#custEmail").val().trim();
+
+        updateCustomer(selectedId, name, phone, address);
+        loadTable(getCustomers());
+        resetForm();
+    });
+
+    $("#deleteCustomerBtn").click(() => {
+        if (!selectedId) {
+            alert("Select a customer first");
+            return;
+        }
+
+        deleteCustomer(selectedId);
+        loadTable(getCustomers());
+        resetForm();
+    });
+
+    $("#searchCustomerBtn").click(() => {
+        const keyword = $("#searchCustomerInput").val().trim();
+        loadTable(searchCustomer(keyword));
+    });
+
+    $("#showAllCustomersBtn").click(() => {
+        loadTable(getCustomers());
+        resetForm();
+    });
+
+});
