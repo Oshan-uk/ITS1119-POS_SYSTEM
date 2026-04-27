@@ -8,7 +8,7 @@ $("#login-btn").on("click", () => {
     const password = $("#password-input").val().trim();
 
     if (!username || !password) {
-        $("#message-box").text("Enter username and password");
+        $("#message-box").text("⚠️ Enter username and password ⚠️");
         return;
     }
 
@@ -23,7 +23,7 @@ $("#login-btn").on("click", () => {
         showPage("dashboard");
 
     } else {
-        $("#message-box").text("Invalid credentials");
+        $("#message-box").text("⚠️ Invalid credentials ⚠️");
     }
 });
 

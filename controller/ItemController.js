@@ -1,117 +1,130 @@
 import {
-    addItemData, updateItemData, deleteItemData,
-    getItemData, getItemByIndex, getItemByCode,
-    generateItemCode
-} from '../model/ItemModel.js';
+    addItem,
+    updateItem,
+    deleteItem,
+    getItems,
+    searchItem
+} from "../model/ItemModel.js";
 
-import { check_price, check_qty } from '../util/regex_util.js';
-import { loadDashboard } from './LoginController.js';
+let selectedItemId = null;
 
-const loadItemTable = () => {
-    $('#item_tbody').empty();
+const loadTable = (data) => {
+    const tbody = $("#itemsTableBody");
+    tbody.empty();
 
-    let list = getItemData();
-    list.map((item, index) => {
-        let row = `<tr data-index="${index}">
-            <td>${item.code}</td>
-            <td>${item.name}</td>
-            <td>Rs.${parseFloat(item.price).toFixed(2)}</td>
-            <td>${item.qty}</td>
-        </tr>`;
-        $('#item_tbody').append(row);
+    if (data.length === 0) {
+        tbody.append(`<tr><td colspan="4" class="text-center">No items</td></tr>`);
+        return;
+    }
+
+    data.forEach(i => {
+        tbody.append(`
+            <tr>
+                <td>${i.id}</td>
+                <td>${i.getName()}</td>
+                <td>${i.getPrice()}</td>
+                <td>${i.getQty()}</td>
+            </tr>
+        `);
     });
-}
 
-const cleanItemForm = () => {
-    $('#item_reset_btn').click();
-    $('#item_code').val(generateItemCode());
-}
+    $("#totalItems").text(getItems().length);
+};
 
-$('#item_tbody').on('click', 'tr', function () {
-    $('.selected').removeClass('selected');
-    $(this).addClass('selected');
+const generateId = () => {
+    const list = getItems();
+    if (list.length === 0) return "I001";
 
-    let item = getItemByIndex($(this).index());
-    $('#item_code').val(item.code);
-    $('#item_name').val(item.name);
-    $('#item_price').val(item.price);
-    $('#item_qty').val(item.qty);
-});
+    const last = list[list.length - 1].id;
+    const num = parseInt(last.replace("I", "")) + 1;
+    return "I" + String(num).padStart(3, "0");
+};
 
-$('#item_save_btn').on('click', function () {
-    let code  = $('#item_code').val();
-    let name  = $('#item_name').val().trim();
-    let price = $('#item_price').val().trim();
-    let qty   = $('#item_qty').val().trim();
+const resetForm = () => {
+    selectedItemId = null;
+    $("#itemId").val(generateId());
+    $("#itemName").val("");
+    $("#itemPrice").val("");
+    $("#itemQty").val("");
+};
 
-    (code == "")           ? Swal.fire({ icon: "error", title: "Code is missing!" }) :
-        (getItemByCode(code))  ? Swal.fire({ icon: "error", title: "Code already exists!" }) :
-            (name == "")           ? Swal.fire({ icon: "error", title: "Name is required!" }) :
-                (!check_price(price))  ? Swal.fire({ icon: "error", title: "Invalid price!" }) :
-                    (!check_qty(qty))      ? Swal.fire({ icon: "error", title: "Invalid quantity!" }) :
-                        (() => {
-                            addItemData(code, name, price, qty);
-                            Swal.fire({ icon: "success", title: "Item saved!" });
-                            cleanItemForm();
-                            loadItemTable();
-                            loadDashboard();
-                        })();
-});
+$(document).ready(() => {
 
-$('#item_update_btn').on('click', function () {
-    let code  = $('#item_code').val();
-    let name  = $('#item_name').val().trim();
-    let price = $('#item_price').val().trim();
-    let qty   = $('#item_qty').val().trim();
+    resetForm();
+    loadTable(getItems());
 
-    (code == "")           ? Swal.fire({ icon: "error", title: "Select an item first!" }) :
-        (!getItemByCode(code)) ? Swal.fire({ icon: "error", title: "Item not found!" }) :
-            (name == "")           ? Swal.fire({ icon: "error", title: "Name is required!" }) :
-                (!check_price(price))  ? Swal.fire({ icon: "error", title: "Invalid price!" }) :
-                    (!check_qty(qty))      ? Swal.fire({ icon: "error", title: "Invalid quantity!" }) :
-                        (() => {
-                            updateItemData(code, name, price, qty);
-                            Swal.fire({ icon: "success", title: "Item updated!" });
-                            cleanItemForm();
-                            loadItemTable();
-                        })();
-});
+    $("#addItemBtn").click(() => {
+        const id = $("#itemId").val().trim();
+        const name = $("#itemName").val().trim();
+        const price = $("#itemPrice").val().trim();
+        const qty = $("#itemQty").val().trim();
 
-$('#item_delete_btn').on('click', function () {
-    let code = $('#item_code').val();
+        if (!name || !price || !qty) {
+            alert("Fill all fields");
+            return;
+        }
 
-    Swal.fire({
-        title: "Are you sure?",
-        text: "This item will be removed!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Yes, delete!"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            (code == "")           ? Swal.fire({ icon: "error", title: "Select an item first!" }) :
-                (!getItemByCode(code)) ? Swal.fire({ icon: "error", title: "Item not found!" }) :
-                    (() => {
-                        deleteItemData(code);
-                        Swal.fire({ icon: "success", title: "Item deleted!" });
-                        cleanItemForm();
-                        loadItemTable();
-                        loadDashboard();
-                    })();
+        if (!addItem(id, name, price, qty)) {
+            alert("Item already exists!");
+            return;
+        }
+
+        loadTable(getItems());
+        resetForm();
+    });
+
+    $("#itemsTableBody").on("click", "tr", function () {
+
+        $("#itemsTableBody tr").removeClass("table-active");
+        $(this).addClass("table-active");
+
+        const id = $(this).find("td:eq(0)").text();
+        const item = getItems().find(i => i.id === id);
+
+        if (item) {
+            selectedItemId = id;
+
+            $("#itemId").val(item.id);
+            $("#itemName").val(item.getName());
+            $("#itemPrice").val(item.getPrice());
+            $("#itemQty").val(item.getQty());
         }
     });
-});
 
-$('#item_search').on('input', function () {
-    let keyword = $(this).val().toLowerCase();
-    $('#item_tbody tr').filter(function () {
-        $(this).toggle($(this).text().toLowerCase().includes(keyword));
+    $("#updateItemBtn").click(() => {
+        if (!selectedItemId) {
+            alert("Select item first");
+            return;
+        }
+
+        updateItem(
+            selectedItemId,
+            $("#itemName").val(),
+            $("#itemPrice").val(),
+            $("#itemQty").val()
+        );
+
+        loadTable(getItems());
+        resetForm();
     });
-});
 
-$(document).ready(function () {
-    $('#item_code').val(generateItemCode());
-});
+    $("#deleteItemBtn").click(() => {
+        if (!selectedItemId) {
+            alert("Select item first");
+            return;
+        }
 
-export { loadItemTable };
+        deleteItem(selectedItemId);
+        loadTable(getItems());
+        resetForm();
+    });
+
+    $("#searchItemBtn").click(() => {
+        loadTable(searchItem($("#searchItemInput").val()));
+    });
+
+    $("#showAllItemsBtn").click(() => {
+        loadTable(getItems());
+    });
+
+});

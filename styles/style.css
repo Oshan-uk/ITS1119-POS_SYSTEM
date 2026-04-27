@@ -148,6 +148,9 @@ body {
     }
 }
 
+label {
+    color: #06eff6 !important;
+}
 
 #divider {
     display: flex;
@@ -226,11 +229,14 @@ body {
 #message-box{
     background: rgba(255,255,255,0.02); !important;
     /*border: 1px solid rgba(255, 255, 255, 0.18) !important; ;*/
-    font-size: 14px;
+    font-size: 15px;
     padding: 12px 14px;
     margin-top: 10px;
-    margin-bottom: 20px;
-    height: 25px;
+    margin-bottom: 30px;
+    height: 40px;
+    color: #000000;
+    font-family: "Times New Roman",sans-serif;
+    text-align: center;
 
 }
 
@@ -732,4 +738,8 @@ body {
     padding: 30px 40px 40px;
 
     overflow-y: auto;
+}
+
+.form-control {
+    color: #ffffff !important;
 }
