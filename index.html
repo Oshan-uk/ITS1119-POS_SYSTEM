@@ -363,7 +363,90 @@
 
         </section>
 
-        <section id="page-neworder" style="display:none;">New Order</section>
+
+<!--        New Order Section-->
+        <section id="page-neworder" class="container-fluid p-4">
+
+            <div class="mb-4">
+                <h2 class="text-white">New Order</h2>
+                <p class="text-secondary">Create and manage customer orders</p>
+            </div>
+
+            <div class="card bg-dark text-white mb-4">
+                <div class="card-body">
+
+                    <div class="row g-2">
+
+                        <div class="col-md-3">
+                            <select id="orderCustomer" class="form-control"></select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <select id="orderItem" class="form-control"></select>
+                        </div>
+
+                        <div class="col-md-2">
+                            <input id="unitPrice" class="form-control" placeholder="Price" readonly>
+                        </div>
+
+                        <div class="col-md-2">
+                            <input id="stockQty" class="form-control" placeholder="Stock" readonly>
+                        </div>
+
+                        <div class="col-md-2">
+                            <input id="buyQty" type="number" class="form-control" placeholder="Qty">
+                        </div>
+
+                        <div class="col-md-2">
+                            <button id="addToCartBtn" class="btn btn-success w-100">
+                                Add
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+
+                    <h5 class="mb-3">Cart</h5>
+
+                    <div class="table-responsive">
+                        <table class="table table-dark table-bordered">
+
+                            <thead class="table-light text-dark">
+                            <tr>
+                                <th>Item</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                            </tr>
+                            </thead>
+
+                            <tbody id="cartTableBody">
+                            <tr>
+                                <td colspan="4" class="text-center text-secondary">
+                                    No items
+                                </td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                    <div class="text-end mt-3">
+                        <button id="placeOrderBtn" class="btn btn-primary">
+                            Place Order
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
         <section id="page-orderhistory" style="display:none;">Order History</section>
 
     </main>

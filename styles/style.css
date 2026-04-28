@@ -743,3 +743,28 @@ label {
 .form-control {
     color: #ffffff !important;
 }
+
+
+
+
+#page-neworder {
+    display: none;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: calc(100% - 255px);
+    height: 100vh;
+
+    z-index: 1;
+
+    border: 2px solid rgba(255, 255, 255, 0.16);
+    border-radius: 35px;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    padding: 30px 40px 40px;
+
+    overflow-y: auto;
+}
