@@ -2,6 +2,8 @@
 const USERNAME = "admin";
 const PASSWORD = "1234";
 
+AOS.init();
+
 
 $("#login-btn").on("click", () => {
 
@@ -9,7 +11,16 @@ $("#login-btn").on("click", () => {
     const password = $("#password-input").val().trim();
 
     if (!username || !password) {
-        $("#message-box").text("⚠️ Enter username and password ⚠️");
+        $("#message-box").text("⚠️ Enter username and password! ⚠️");
+        return;
+    }
+    if (USERNAME !== username ) {
+        $("#message-box").text("⚠️ Enter Correct Username! ⚠️");
+        return;
+    }
+
+    if (PASSWORD !== password ) {
+        $("#message-box").text("⚠️ Enter Correct Password! ⚠️");
         return;
     }
 
