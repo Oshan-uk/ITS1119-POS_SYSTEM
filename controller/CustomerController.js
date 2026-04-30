@@ -81,8 +81,8 @@ $(document).ready(() => {
 
     $("#customersTableBody").on("click", "tr", function () {
 
-        $("#customersTableBody tr").removeClass("table-active"); // remove old
-        $(this).addClass("table-active"); // highlight
+        $("#customersTableBody tr").removeClass("table-active");
+        $(this).addClass("table-active");
 
         const id = $(this).find("td:eq(0)").text();
         const customer = getCustomers().find(c => c.id === id);

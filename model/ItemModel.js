@@ -1,4 +1,4 @@
-const items = [];
+import db from "../db/db.js";
 
 class Item {
     constructor(id, name, price, qty) {
@@ -18,13 +18,17 @@ class Item {
 }
 
 const addItem = (id, name, price, qty) => {
-    if (items.some(i => i.id === id)) return false;
-    items.push(new Item(id, name, price, qty));
+
+    const exists = db.items.some(i => i.id === id);
+
+    if (exists) return false;
+
+    db.items.push(new Item(id, name, price, qty));
     return true;
 };
 
 const updateItem = (id, name, price, qty) => {
-    const i = items.find(i => i.id === id);
+    const i = db.items.find(i => i.id === id);
     if (i) {
         i.setName(name);
         i.setPrice(price);
@@ -33,14 +37,14 @@ const updateItem = (id, name, price, qty) => {
 };
 
 const deleteItem = (id) => {
-    const index = items.findIndex(i => i.id === id);
-    if (index !== -1) items.splice(index, 1);
+    const index = db.items.findIndex(i => i.id === id);
+    if (index !== -1) db.items.splice(index, 1);
 };
 
-const getItems = () => items;
+const getItems = () => db.items;
 
 const searchItem = (keyword) => {
-    return items.filter(i =>
+    return db.items.filter(i =>
         i.id.toLowerCase().includes(keyword.toLowerCase()) ||
         i.name.toLowerCase().includes(keyword.toLowerCase())
     );

@@ -1,7 +1,9 @@
-let customer_db = [];
+const db = window.appDB || {
+    customers: [],
+    items: [],
+    orders: []
+};
 
-let item_db = [];
+window.appDB = db;
 
-let order_db = [];
-
-export { customer_db, item_db, order_db };
+export default db;
