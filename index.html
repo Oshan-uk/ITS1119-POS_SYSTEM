@@ -64,9 +64,11 @@
 
     <!-- SIDEBAR -->
     <aside id="sidebar">
+        <section class="sidebar-header">
+            <div id="sidebar-logo-icon">P</div>
+            <h1 id="sidebar-brand-name">Point Of Sale</h1>
+        </section>
 
-        <div id="sidebar-logo-icon">P</div>
-        <h1 id="sidebar-brand-name">Point Of Sale</h1>
         <button class="nav-btn" onclick="showPage('dashboard')">Dashboard</button>
         <button class="nav-btn" onclick="showPage('customers')">Customers</button>
         <button class="nav-btn" onclick="showPage('items')">Items</button>
@@ -79,7 +81,6 @@
 
     <main id="main-content">
 
-<!--        next start from here-->
         <section id="page-dashboard">
 
             <!-- HEADER -->
@@ -134,7 +135,6 @@
                     </thead>
 
                     <tbody id="recentOrdersTable">
-                    <!-- JS will load data here -->
                     <tr>
                         <td colspan="4" style="text-align:center; color:gray;">
                             No orders yet

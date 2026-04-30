@@ -44,6 +44,17 @@ function showPage(page) {
     $("#page-dashboard, #page-customers, #page-items, #page-neworder, #page-orderhistory").hide();
 
     $("#page-" + page).show();
+
+
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+
+        if (btn.textContent.toLowerCase().includes(page)) {
+            btn.classList.add('active');
+        }
+    });
 }
 
 window.showPage = showPage;
+
+

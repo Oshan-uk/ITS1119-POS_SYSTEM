@@ -1,9 +1,7 @@
-const db = window.appDB || {
+const db = {
     customers: [],
     items: [],
     orders: []
 };
-
-window.appDB = db;
 
 export default db;
