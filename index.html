@@ -35,8 +35,8 @@
 
     <section id="login-card" >
 
-        <header class="login-header">
-            <div id="logo-icon">P</div>
+        <header class="login-header animate__animated animate__rubberBand ">
+            <div id="logo-icon" class="">P</div>
             <h1 id="app-name">Point Of Sale</h1>
         </header>
 
@@ -95,6 +95,11 @@
             Order History
         </button>
 
+        <div id="sidebar-datetime">
+            <div id="sidebar-date"></div>
+            <div id="sidebar-time"></div>
+        </div>
+
         <button id="logout-btn" class="animate__animated animate__bounce animate__infinite">Logout</button>
 
     </aside>
@@ -103,7 +108,6 @@
 
         <section id="page-dashboard" class="animate__animated animate__backInLeft">
 
-            <!-- HEADER -->
             <div id="dashboard-header">
                 <h2 id="dashboard-title">Dashboard</h2>
                 <p id="dashboard-subtitle">
@@ -111,7 +115,6 @@
                 </p>
             </div>
 
-            <!-- STATS CARDS -->
             <div id="status-grid">
 
                 <div class="status-card card-purple">
@@ -136,7 +139,6 @@
 
             </div>
 
-            <!-- RECENT ORDERS TABLE -->
             <div id="recent-orders-section">
 
                 <div id="recent-orders-header">
@@ -388,8 +390,6 @@
         <!-- New Order Page -->
         <section id="page-neworder" class="container-fluid p-4 animate__animated animate__backInLeft">
 
-
-
             <div class="row g-4 mb-4">
 
                 <div class="col-md-6">
@@ -442,7 +442,7 @@
                         <table class="table table-dark table-hover table-bordered">
                             <thead class="table-light text-dark">
                             <tr>
-                                <th>#</th>
+                                <th>No.</th>
                                 <th>Item</th>
                                 <th>Price</th>
                                 <th>Qty</th>
@@ -487,8 +487,59 @@
         </section>
 
 
-        <section id="page-orderhistory" style="display:none;">Order History</section>
+        <!-- Order History Page -->
+        <section id="page-orderhistory" class="container-fluid p-4 animate__animated animate__backInLeft" style="display:none;">
 
+            <div class="mb-4">
+                <h2 class="text-white" id="oh-title">Order History</h2>
+                <p class="text-secondary" id="oh-subtitle">View and filter all placed orders.</p>
+            </div>
+
+            <div class="oh-filter-card">
+                <h5 class="oh-card-title">Filter by Date</h5>
+                <div class="oh-filter-row">
+                    <div class="oh-filter-group">
+                        <label class="oh-label">From</label>
+                        <input type="date" id="filterFromDate" class="oh-input">
+                    </div>
+                    <div class="oh-filter-group">
+                        <label class="oh-label">To</label>
+                        <input type="date" id="filterToDate" class="oh-input">
+                    </div>
+                    <div class="oh-filter-actions">
+                        <button id="filterOrderBtn" class="oh-btn oh-btn-primary">
+                            <i class='bx bx-filter-alt'></i> Filter
+                        </button>
+                        <button id="clearFilterBtn" class="oh-btn oh-btn-secondary">
+                            <i class='bx bx-refresh'></i> Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="oh-table-card">
+                <h5 class="oh-card-title">All Orders</h5>
+                <div class="oh-table-wrapper">
+                    <table class="oh-table">
+                        <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Date</th>
+                        </tr>
+                        </thead>
+                        <tbody id="orderHistoryTableBody">
+                        <tr>
+                            <td colspan="5" class="oh-empty">No orders found</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
     </main>
 
 </section>

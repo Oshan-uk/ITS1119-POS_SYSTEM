@@ -1,4 +1,4 @@
-import { populateOrderDropdowns } from './OrderController.js';
+import { populateOrderDropdowns, loadOrderHistory } from './OrderController.js';
 
 const USERNAME = "admin";
 const PASSWORD = "1234";
@@ -54,23 +54,40 @@ $("#logout-btn").on("click", () => {
 function showPage(page) {
 
     $("#page-dashboard, #page-customers, #page-items, #page-neworder, #page-orderhistory").hide();
-
     $("#page-" + page).show();
-
 
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('active');
 
-        if (btn.textContent.toLowerCase().includes(page)) {
+        const btnPage = btn.textContent.trim().toLowerCase().replace(/\s+/g, '');
+        if (btnPage.includes(page)) {
             btn.classList.add('active');
         }
     });
 
-    if (page === 'neworder') {
-        populateOrderDropdowns();
-    }
+    if (page === 'neworder')     populateOrderDropdowns();
+    if (page === 'orderhistory') loadOrderHistory();
 }
 
 window.showPage = showPage;
 
 
+// Date & Time
+const updateDateTime = () => {
+    const now = new Date();
+
+    const date = now.toLocaleDateString('en-US', {
+        weekday: 'short', year: 'numeric',
+        month: 'short', day: 'numeric'
+    });
+
+    const time = now.toLocaleTimeString('en-US', {
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+    });
+
+    $("#sidebar-date").text(date);
+    $("#sidebar-time").text(time);
+};
+
+setInterval(updateDateTime, 1000);
+updateDateTime();

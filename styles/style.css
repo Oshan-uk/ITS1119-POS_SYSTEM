@@ -438,35 +438,25 @@ label {
     margin: 56px 0;
 }
 
-#sidebar-tools {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    align-items: center;
-
-}
-
-.tool-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 7px 10px;
-    border-radius: 8px;
-    border: none;
-    background: transparent;
-
-    font-family: 'Times New Roman', sans-serif;
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.30);
-
-    cursor: pointer;
-    transition: all 0.15s ease;
+#sidebar-datetime {
+    margin: 10px 0;
+    border-radius: 10px;
     text-align: center;
 }
 
-.tool-link:hover {
-    color: rgba(255, 255, 255, 0.60);
-    background: rgba(255, 255, 255, 0.05);
+#sidebar-date {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.75rem;
+    font-family: "Times New Roman",sans-serif;
+
+}
+
+#sidebar-time {
+    color: #06eff6;
+    /*font-weight: 600;*/
+    font-family: "Times New Roman",sans-serif;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px rgba(6, 239, 246, 0.5);
 }
 
 #logout-btn {
@@ -482,7 +472,7 @@ label {
     font-size: 13px;
     letter-spacing: 0.5px;
     color: white;
-    margin-top: 100px;
+    margin-top: 25px;
     cursor: pointer;
     transition: all 0.18s ease;
     box-shadow: 0 0 7px rgba(255, 80, 100, 0.25);
@@ -545,7 +535,7 @@ label {
     margin-bottom: 24px;
 }
 
-#dashboard-title, #customer-title, #item-title {
+#dashboard-title, #customer-title, #item-title, #oh-title {
     font-family: 'Inknut Antiqua', sans-serif;
     font-size: 32px;
     font-weight: 800;
@@ -553,7 +543,7 @@ label {
     letter-spacing: -0.5px;
 }
 
-#dashboard-subtitle, #customer-subtitle, #item-subtitle {
+#dashboard-subtitle, #customer-subtitle, #item-subtitle, #oh-subtitle {
     font-size: 15px;
     color: rgba(255, 255, 255, 0.45);
     margin-top: 4px;
@@ -1054,4 +1044,179 @@ label {
     position: sticky !important;
     bottom: 0 !important;
     z-index: 100 !important;
+}
+
+/*Page Order history Section*/
+#page-orderhistory {
+    display: block;
+    height: 100vh;
+    position: absolute;
+    width: calc(100% - 255px);
+    z-index: 1;
+    right: 0;
+    top: 0;
+    border: 1px solid rgba(6, 239, 246, 0.61);
+    border-radius: 35px;
+    background: rgba(255, 255, 255, 0.07);
+    padding: 30px 40px 40px;
+
+}
+
+.oh-filter-card,
+.oh-table-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    margin-bottom: 1.5rem;
+}
+
+.oh-card-title {
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1.2rem 0;
+}
+
+.oh-filter-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.oh-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.oh-label {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+}
+
+.oh-input {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.07);
+    color: white;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.oh-input:focus {
+    border-color: rgba(97, 248, 10, 0.5);
+    box-shadow: 0 0 8px rgba(97, 248, 10, 0.2);
+}
+
+.oh-filter-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.oh-btn {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.oh-btn-primary {
+    background: rgba(97, 248, 10, 0.12);
+    border-color: rgba(97, 248, 10, 0.5);
+    color: #61f80a;
+}
+
+.oh-btn-primary:hover {
+    background: rgba(97, 248, 10, 0.25);
+    box-shadow: 0 0 16px rgba(97, 248, 10, 0.4);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.oh-btn-secondary {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.oh-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.oh-table-wrapper {
+    overflow-x: auto;
+}
+
+.oh-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.oh-table thead tr {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.oh-table th {
+    padding: 12px 16px;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
+}
+
+.oh-table td {
+    padding: 12px 16px;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.oh-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.oh-empty {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+}
+
+.oh-item-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(97, 248, 10, 0.1);
+    border: 1px solid rgba(97, 248, 10, 0.3);
+    border-radius: 20px;
+    padding: 2px 8px;
+    margin: 2px;
+    font-size: 0.75rem;
+    color: white;
+}
+
+.oh-item-tag-qty {
+    color: #61f80a;
+    font-weight: 700;
+}
+
+.oh-total {
+    color: #61f80a;
+    font-weight: 700;
 }

@@ -206,3 +206,59 @@ const updateDashboard = () => {
         `);
     });
 };
+
+
+
+// Order History
+export const loadOrderHistory = (data = getOrders()) => {
+    const tbody = $("#orderHistoryTableBody");
+    tbody.empty();
+
+    if (data.length === 0) {
+        tbody.append(`<tr><td colspan="5" class="oh-empty">No orders found</td></tr>`);
+        return;
+    }
+
+    data.forEach(o => {
+        const itemTags = o.getItems().map(i =>
+            `<span class="oh-item-tag">${i.name} <span class="oh-item-tag-qty">x${i.qty}</span></span>`
+        ).join("");
+
+        tbody.append(`
+            <tr>
+                <td>${o.getId()}</td>
+                <td>${o.getCustomerName()}</td>
+                <td>${itemTags}</td>
+                <td class="oh-total">Rs. ${o.getTotal().toFixed(2)}</td>
+                <td>${o.getDate()}</td>
+            </tr>
+        `);
+    });
+};
+
+$("#filterOrderBtn").on("click", () => {
+    const from = $("#filterFromDate").val();
+    const to   = $("#filterToDate").val();
+
+    if (!from || !to) {
+        alert("Please select both From and To dates!");
+        return;
+    }
+
+    const fromDate = new Date(from);
+    const toDate   = new Date(to);
+    toDate.setHours(23, 59, 59);
+
+    const filtered = getOrders().filter(o => {
+        const orderDate = new Date(o.getDate());
+        return orderDate >= fromDate && orderDate <= toDate;
+    });
+
+    loadOrderHistory(filtered);
+});
+
+$("#clearFilterBtn").on("click", () => {
+    $("#filterFromDate").val("");
+    $("#filterToDate").val("");
+    loadOrderHistory();
+});
