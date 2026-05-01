@@ -545,7 +545,7 @@ label {
     margin-bottom: 24px;
 }
 
-#dashboard-title {
+#dashboard-title, #customer-title {
     font-family: 'Inknut Antiqua', sans-serif;
     font-size: 32px;
     font-weight: 800;
@@ -553,7 +553,7 @@ label {
     letter-spacing: -0.5px;
 }
 
-#dashboard-subtitle {
+#dashboard-subtitle, #customer-subtitle {
     font-size: 15px;
     color: rgba(255, 255, 255, 0.45);
     margin-top: 4px;
@@ -770,7 +770,66 @@ label {
     overflow-y: auto;
 }
 
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+#addCustomerBtn {
+    color: white;
+    border-radius: 5px;
+    background: linear-gradient(135deg, rgba(97, 248, 10, 0.79), rgba(6, 239, 246, 0.1))!important;
+    border-color: rgba(97, 248, 10, 0.5);
+}
+
+#addCustomerBtn:hover {
+    background: rgba(97, 248, 10, 0.25);
+    box-shadow: 0 0 16px rgba(97, 248, 10, 0.4);
+    color: rgba(175, 244, 136, 0.51);
+    transform: translateY(-2px);
+}
+
+#updateCustomerBtn {
+    border-radius: 5px;
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.65), rgba(255, 140, 0, 0.1))!important;
+    border-color: rgba(255, 193, 7, 0.5);
+    color: white;
+}
+
+#updateCustomerBtn:hover {
+    background: rgba(255, 193, 7, 0.25);
+    box-shadow: 0 0 16px rgba(255, 193, 7, 0.4);
+    color: rgba(234, 214, 118, 0.62);
+    transform: translateY(-2px);
+}
+
+
+#deleteCustomerBtn {
+    border-radius: 5px;
+    background: linear-gradient(135deg, rgba(255, 59, 59, 0.74), rgba(255, 0, 0, 0.1))!important;
+    border-color: rgba(255, 59, 59, 0.5);
+    color: white;
+}
+
+#deleteCustomerBtn:hover {
+    background: rgba(255, 59, 59, 0.25);
+    box-shadow: 0 0 16px rgba(255, 59, 59, 0.4);
+    color: #fb867b;
+    transform: translateY(-2px);
+}
+
+.btn-group-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-left: auto;
+}
 
 /*Item Page*/
 #page-items {
@@ -794,6 +853,66 @@ label {
 
     overflow-y: auto;
 }
+
+
+#addItemBtn {
+    border-radius: 5px;
+    background: linear-gradient(135deg, rgba(97, 248, 10, 0.79), rgba(6, 239, 246, 0.1))!important;
+    border: 1px solid rgba(97, 248, 10, 0.5)!important;
+    color: #61f80a!important;
+    font-weight: 600!important;
+    backdrop-filter: blur(10px)!important;
+    -webkit-backdrop-filter: blur(10px)!important;
+    transition: all 0.3s ease!important;
+}
+
+#addItemBtn:hover {
+    background: linear-gradient(135deg, rgba(97, 248, 10, 0.4), rgba(6, 239, 246, 0.2))!important;
+    box-shadow: 0 0 16px rgba(97, 248, 10, 0.5)!important;
+    color: #fff!important;
+    transform: translateY(-2px)!important;
+}
+
+#updateItemBtn {
+    border-radius: 5px;
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.65), rgba(255, 140, 0, 0.1))!important;
+    border: 1px solid rgba(255, 193, 7, 0.5)!important;
+    color: #ffc107!important;
+    font-weight: 600!important;
+    backdrop-filter: blur(10px)!important;
+    -webkit-backdrop-filter: blur(10px)!important;
+    transition: all 0.3s ease!important;
+}
+
+#updateItemBtn:hover {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.4), rgba(255, 140, 0, 0.2))!important;
+    box-shadow: 0 0 16px rgba(255, 193, 7, 0.5)!important;
+    color: #fff!important;
+    transform: translateY(-2px)!important;
+}
+
+#deleteItemBtn {
+    border-radius: 5px;
+    background: linear-gradient(135deg, rgba(255, 59, 59, 0.74), rgba(255, 0, 0, 0.1))!important;
+    border: 1px solid rgba(255, 59, 59, 0.5)!important;
+    color: #ff3b3b!important;
+    font-weight: 600!important;
+    backdrop-filter: blur(10px)!important;
+    -webkit-backdrop-filter: blur(10px)!important;
+    transition: all 0.3s ease!important;
+}
+
+#deleteItemBtn:hover {
+    background: linear-gradient(135deg, rgba(255, 59, 59, 0.4), rgba(255, 0, 0, 0.2))!important;
+    box-shadow: 0 0 16px rgba(255, 59, 59, 0.5)!important;
+    color: #fff!important;
+    transform: translateY(-2px)!important;
+}
+
+
+
+
+
 
 .form-control {
     color: #ffffff !important;
