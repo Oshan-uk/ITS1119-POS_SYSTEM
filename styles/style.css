@@ -545,7 +545,7 @@ label {
     margin-bottom: 24px;
 }
 
-#dashboard-title, #customer-title {
+#dashboard-title, #customer-title, #item-title {
     font-family: 'Inknut Antiqua', sans-serif;
     font-size: 32px;
     font-weight: 800;
@@ -553,7 +553,7 @@ label {
     letter-spacing: -0.5px;
 }
 
-#dashboard-subtitle, #customer-subtitle {
+#dashboard-subtitle, #customer-subtitle, #item-subtitle {
     font-size: 15px;
     color: rgba(255, 255, 255, 0.45);
     margin-top: 4px;
@@ -784,6 +784,7 @@ label {
 #addCustomerBtn {
     color: white;
     border-radius: 5px;
+    font-weight: 600!important;
     background: linear-gradient(135deg, rgba(97, 248, 10, 0.79), rgba(6, 239, 246, 0.1))!important;
     border-color: rgba(97, 248, 10, 0.5);
 }
@@ -797,6 +798,7 @@ label {
 
 #updateCustomerBtn {
     border-radius: 5px;
+    font-weight: 600!important;
     background: linear-gradient(135deg, rgba(255, 193, 7, 0.65), rgba(255, 140, 0, 0.1))!important;
     border-color: rgba(255, 193, 7, 0.5);
     color: white;
@@ -812,6 +814,7 @@ label {
 
 #deleteCustomerBtn {
     border-radius: 5px;
+    font-weight: 600!important;
     background: linear-gradient(135deg, rgba(255, 59, 59, 0.74), rgba(255, 0, 0, 0.1))!important;
     border-color: rgba(255, 59, 59, 0.5);
     color: white;
@@ -939,4 +942,116 @@ label {
     padding: 30px 40px 40px;
 
     overflow-y: auto;
+}
+
+#addToCartBtn {
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: rgba(97, 248, 10, 0.12);
+    border: 1px solid rgba(97, 248, 10, 0.5);
+    color: #61f80a;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+#addToCartBtn:hover {
+    background: rgba(97, 248, 10, 0.25);
+    box-shadow: 0 0 16px rgba(97, 248, 10, 0.4);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.remove-cart-btn {
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: rgba(255, 59, 59, 0.12);
+    border: 1px solid rgba(255, 59, 59, 0.5);
+    color: #ff3b3b;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.remove-cart-btn:hover {
+    background: rgba(255, 59, 59, 0.25);
+    box-shadow: 0 0 12px rgba(255, 59, 59, 0.4);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+#clearOrderBtn {
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: rgba(255, 193, 7, 0.12);
+    border: 1px solid rgba(255, 193, 7, 0.5);
+    color: #f4edcd;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+#clearOrderBtn:hover {
+    background: rgba(255, 193, 7, 0.25);
+    box-shadow: 0 0 16px rgba(255, 193, 7, 0.4);
+    color: #ec2311;
+    transform: translateY(-2px);
+}
+
+#placeOrderBtn {
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: rgba(97, 248, 10, 0.12);
+    border: 1px solid rgba(97, 248, 10, 0.5);
+    color: rgba(81, 218, 16, 0.42);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+#placeOrderBtn:hover {
+    background: rgba(97, 248, 10, 0.25);
+    box-shadow: 0 0 16px rgba(97, 248, 10, 0.4);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+#summaryTotal {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(97, 248, 10, 0.5);
+}
+
+#summaryTotal {
+    color: #06eff6;
+    text-shadow: 0 0 10px rgb(236, 35, 17);
+}
+
+.order-phone-readonly {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.order-divider {
+    margin-top: 70px;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+#orderSummaryBar {
+    position: sticky !important;
+    bottom: 0 !important;
+    z-index: 100 !important;
 }

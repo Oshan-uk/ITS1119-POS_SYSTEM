@@ -9,8 +9,8 @@ class Item {
     }
 
     getName() { return this.name; }
-    getPrice() { return this.price; }
-    getQty() { return this.qty; }
+    getPrice() { return parseFloat(this.price); }
+    getQty() { return parseInt(this.qty); }
 
     setName(name) { this.name = name; }
     setPrice(price) { this.price = price; }

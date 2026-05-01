@@ -285,13 +285,13 @@
         <section id="page-items" class="container-fluid p-4 animate__animated animate__backInLeft" style="display:none;">
 
             <div class="mb-4">
-                <h2 class="text-white">Manage Items</h2>
-                <p class="text-secondary">
+                <h2 id="item-title" class="text-white">Manage Items</h2>
+                <p id="item-subtitle"  class="text-secondary">
                     Add, search, and manage item details.
                 </p>
             </div>
 
-            <div class="card bg-dark text-white mb-4">
+            <div class="card glass-card text-white mb-4">
                 <div class="card-body">
 
                     <h5 class="card-title mb-3">Add Item</h5>
@@ -299,7 +299,7 @@
                     <div class="row g-2">
 
                         <div class="col-md-2">
-                            <input type="text" id="itemId" class="form-control bg-secondary text-white" placeholder="Item ID">
+                            <input type="text" id="itemId" class="form-control bg-secondary text-white" placeholder="Item ID" readonly>
                         </div>
 
                         <div class="col-md-3">
@@ -325,7 +325,7 @@
                 </div>
             </div>
 
-            <div class="card bg-dark text-white mb-4">
+            <div class="card glass-card text-white mb-4">
                 <div class="card-body">
 
                     <h5 class="card-title mb-3">Search Item</h5>
@@ -349,7 +349,7 @@
                 </div>
             </div>
 
-            <div class="card bg-dark text-white">
+            <div class="card glass-card text-white">
                 <div class="card-body">
 
                     <h5 class="card-title mb-3">Item List</h5>
@@ -385,7 +385,108 @@
 
 
 
-        <section id="page-neworder" style="display:none;">New Order</section>
+        <!-- New Order Page -->
+        <section id="page-neworder" class="container-fluid p-4 animate__animated animate__backInLeft">
+
+
+
+            <div class="row g-4 mb-4">
+
+                <div class="col-md-6">
+                    <div class="card glass-card text-white h-100">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Customer</h5>
+                            <div class="row g-2">
+                                <div class="col-md-8">
+                                    <select id="orderCustomerSelect" class="form-select">
+                                        <option value="">-- Select Customer --</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" id="orderCustomerPhone" class="form-control order-phone-readonly" placeholder="Phone" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card glass-card text-white h-100">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">Add Item</h5>
+                            <div class="row g-2 align-items-end">
+                                <div class="col-md-5">
+                                    <select id="orderItemSelect" class="form-select">
+                                        <option value="">-- Select Item --</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="number" id="orderItemQty" class="form-control" placeholder="Qty" min="1" value="1">
+                                </div>
+                                <div class="col-md-4">
+                                    <button id="addToCartBtn">
+                                        <i class='bx bx-cart-add'></i> Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card glass-card text-white mb-4">
+                <div class="card-body glass-card">
+                    <h5 class="card-title mb-3">Cart</h5>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover table-bordered">
+                            <thead class="table-light text-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Item</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Subtotal</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody id="cartTableBody">
+                            <tr id="cartEmptyRow">
+                                <td colspan="6" class="text-center text-secondary">No items in cart</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <hr class="order-divider">-->
+
+            <div class="card bg-dark text-white mt-4" id="orderSummaryBar">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-end">
+
+                        <div>
+                            <p class="mb-1 text-secondary">Total Amount</p>
+                            <h3 id="summaryTotal">Rs. 0.00</h3>
+                        </div>
+
+                        <div class="d-flex gap-3">
+                            <button id="clearOrderBtn">
+                                <i class='bx bx-trash'></i> Clear
+                            </button>
+                            <button id="placeOrderBtn">
+                                <i class='bx bx-check-circle'></i> Place Order
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
         <section id="page-orderhistory" style="display:none;">Order History</section>
 
     </main>

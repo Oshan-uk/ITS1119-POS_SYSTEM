@@ -1,3 +1,4 @@
+import { populateOrderDropdowns } from './OrderController.js';
 
 const USERNAME = "admin";
 const PASSWORD = "1234";
@@ -64,6 +65,10 @@ function showPage(page) {
             btn.classList.add('active');
         }
     });
+
+    if (page === 'neworder') {
+        populateOrderDropdowns();
+    }
 }
 
 window.showPage = showPage;
