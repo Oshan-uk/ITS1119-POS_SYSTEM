@@ -1138,6 +1138,7 @@ label {
     background: rgba(97, 248, 10, 0.12);
     border-color: rgba(97, 248, 10, 0.5);
     color: #61f80a;
+    right: 0;
 }
 
 .oh-btn-primary:hover {
@@ -1157,6 +1158,19 @@ label {
     background: rgba(255, 255, 255, 0.15);
     color: #fff;
     transform: translateY(-2px);
+}
+
+
+.oh-filter-card {
+    position: relative;
+}
+
+.oh-filter-actions {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    gap: 10px;
 }
 
 .oh-table-wrapper {
