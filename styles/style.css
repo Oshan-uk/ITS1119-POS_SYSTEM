@@ -407,6 +407,29 @@ label {
     border-right: 4px solid rgb(6, 239, 246);
 }
 
+.nav-btn i {
+    font-size: 1.2rem;
+    margin-right: 10px;
+    color: rgba(255, 255, 255, 0.6);
+    vertical-align: middle;
+}
+
+.nav-btn.active i {
+    color: #06eff6;
+    text-shadow: 0 0 8px rgba(6, 239, 246, 0.8);
+    animation: icon 0.8s infinite alternate;
+    transition: 1s;
+}
+
+@keyframes icon {
+    from{
+        color: #06eff6;
+    }
+    to{
+        color: greenyellow;
+
+    }
+}
 
 
 .sidebar-divider {

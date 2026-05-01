@@ -16,6 +16,7 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="styles/style.css"/>
 
 </head>
@@ -73,13 +74,28 @@
             <h1 id="sidebar-brand-name">Point Of Sale</h1>
         </section>
 
-        <button class="nav-btn" onclick="showPage('dashboard')">Dashboard</button>
-        <button class="nav-btn" onclick="showPage('customers')">Customers</button>
-        <button class="nav-btn" onclick="showPage('items')">Items</button>
-        <button class="nav-btn" onclick="showPage('neworder')">New Order</button>
-        <button class="nav-btn" onclick="showPage('orderhistory')">Order History</button>
+        <button class="nav-btn" onclick="showPage('dashboard')">
+            <i class='bx bx-home'></i>
+            Dashboard
+        </button>
+        <button class="nav-btn" onclick="showPage('customers')">
+            <i class='bx bx-group'></i>
+            Customers
+        </button>
+        <button class="nav-btn" onclick="showPage('items')">
+            <i class='bx bx-package'></i>
+            Items
+        </button>
+        <button class="nav-btn" onclick="showPage('neworder')">
+            <i class='bx bx-cart'></i>
+            New Order
+        </button>
+        <button class="nav-btn" onclick="showPage('orderhistory')">
+            <i class='bx bx-history'></i>
+            Order History
+        </button>
 
-        <button id="logout-btn">Logout</button>
+        <button id="logout-btn" class="animate__animated animate__bounce animate__infinite">Logout</button>
 
     </aside>
 
