@@ -5,7 +5,7 @@ import {
     updateCustomer,
     deleteCustomer
 } from "../model/CustomerModel.js";
-import {check_phone} from "../util/regex_util";
+import {check_phone} from "../util/regex_util.js";
 
 let selectedId = null;
 

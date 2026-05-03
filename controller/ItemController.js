@@ -5,7 +5,7 @@ import {
     getItems,
     searchItem
 } from "../model/ItemModel.js";
-import {check_price,check_qty} from "../util/regex_util";
+import {check_price,check_qty} from "../util/regex_util.js";
 
 let selectedItemId = null;
 
