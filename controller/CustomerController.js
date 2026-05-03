@@ -5,6 +5,7 @@ import {
     updateCustomer,
     deleteCustomer
 } from "../model/CustomerModel.js";
+import {check_phone} from "../util/regex_util";
 
 let selectedId = null;
 
@@ -65,6 +66,16 @@ $(document).ready(() => {
 
         if (!name || !phone || !address) {
             alert("Fill all fields");
+            return;
+        }
+
+        if (!check_phone(phone)) {
+            alert("Invalid phone number! Use format: 07XXXXXXXX");
+            return;
+        }
+
+        if (name.length < 3) {
+            alert("Name must be at least 3 characters");
             return;
         }
 

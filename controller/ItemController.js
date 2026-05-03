@@ -5,6 +5,7 @@ import {
     getItems,
     searchItem
 } from "../model/ItemModel.js";
+import {check_price,check_qty} from "../util/regex_util";
 
 let selectedItemId = null;
 
@@ -61,6 +62,21 @@ $(document).ready(() => {
 
         if (!name || !price || !qty) {
             alert("Fill all fields");
+            return;
+        }
+
+        if (!check_price(price)) {
+            alert("Invalid price! Example: 100 or 100.50");
+            return;
+        }
+
+        if (!check_qty(qty)) {
+            alert("Quantity must be a whole number!");
+            return;
+        }
+
+        if (name.length < 2) {
+            alert("Item name too short!");
             return;
         }
 
