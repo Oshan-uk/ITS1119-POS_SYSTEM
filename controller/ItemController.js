@@ -9,7 +9,7 @@ import {check_price,check_qty} from "../util/regex_util.js";
 
 let selectedItemId = null;
 
-const loadTable = (data) => {
+export const loadTable = (data) => {
     const tbody = $("#itemsTableBody");
     tbody.empty();
 

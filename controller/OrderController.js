@@ -1,6 +1,7 @@
 import { addOrder, getOrders, searchOrder, deleteOrder } from "../model/OrderModel.js";
 import { getCustomers } from "../model/CustomerModel.js";
-import { getItems, updateItem } from "../model/ItemModel.js";
+import { getItems, updateItem} from "../model/ItemModel.js";
+import { loadTable } from '../controller/ItemController.js'
 
 let cart = [];
 
@@ -173,7 +174,7 @@ $(document).ready(() => {
 
         updateDashboard();
         resetOrderForm();
-
+        loadTable(getItems());
         alert("Order " + orderId + " placed successfully!");
     });
 
@@ -220,9 +221,7 @@ export const loadOrderHistory = (data = getOrders()) => {
     }
 
     data.forEach(o => {
-        const itemTags = o.getItems().map(i =>
-            `<span class="oh-item-tag">${i.name} <span class="oh-item-tag-qty">x${i.qty}</span></span>`
-        ).join("");
+        const itemTags = o.getItems().map(i => `<span class="oh-item-tag">${i.name} <span class="oh-item-tag-qty">x${i.qty}</span></span>`).join("");
 
         tbody.append(`
             <tr>
