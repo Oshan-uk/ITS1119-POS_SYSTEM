@@ -106,7 +106,6 @@ $(document).ready(() => {
             $("#custPhone").val(customer.getPhone());
             $("#custEmail").val(customer.getAddress());
         }
-        resetForm();
 
     });
 
